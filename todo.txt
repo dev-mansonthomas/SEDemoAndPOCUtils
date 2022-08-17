@@ -1,0 +1,7 @@
+
+
+stats clients:
+curl -k https://mr5c67ivbd62u.messaging.solace.cloud:943/SEMP -u essilor2-admin:f7e04piue0rpj2cti62h5qb4qf -d "<rpc><show><client><name>*</name><client-username></client-username><username>solace-cloud-client</username><stats></stats><detail></detail></client></show></rpc>"
+
+show connection wide
+curl -k https://mr5c67ivbd62u.messaging.solace.cloud:943/SEMP -u essilor2-admin:f7e04piue0rpj2cti62h5qb4qf -d "<rpc><show><client><name>*</name><client-username></client-username><username>solace-cloud-client</username><connections></connections><wide></wide></client></show></rpc>"
