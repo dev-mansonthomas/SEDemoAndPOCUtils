@@ -1,0 +1,95 @@
+{
+  "eventMeshName": "ACME Event Mesh",
+  "services": [
+    "f4me4ykpyp2",
+    "qz6t09437qp",
+    "cutxwyn8jwn",
+    "47zy5s1of30"
+  ],
+  "links": [
+    {
+      "serviceId": "f4me4ykpyp2",
+      "serviceName": "ACME Rideshare Partner AF",
+      "links": [
+        {
+          "initiatorServiceId": "qz6t09437qp",
+          "remoteServiceId": "f4me4ykpyp2",
+          "remoteEndpointId": "b01h34rzgkp"
+        },
+        {
+          "initiatorServiceId": "cutxwyn8jwn",
+          "remoteServiceId": "f4me4ykpyp2",
+          "remoteEndpointId": "b01h34rzgkp"
+        },
+        {
+          "initiatorServiceId": "47zy5s1of30",
+          "remoteServiceId": "f4me4ykpyp2",
+          "remoteEndpointId": "b01h34rzgkp"
+        }
+      ]
+    },
+    {
+      "serviceId": "qz6t09437qp",
+      "serviceName": "ACME Rideshare Partner US",
+      "links": [
+        {
+          "initiatorServiceId": "qz6t09437qp",
+          "remoteServiceId": "f4me4ykpyp2",
+          "remoteEndpointId": "b01h34rzgkp"
+        },
+        {
+          "initiatorServiceId": "cutxwyn8jwn",
+          "remoteServiceId": "qz6t09437qp",
+          "remoteEndpointId": "463n06mptdv"
+        },
+        {
+          "initiatorServiceId": "47zy5s1of30",
+          "remoteServiceId": "qz6t09437qp",
+          "remoteEndpointId": "463n06mptdv"
+        }
+      ]
+    },
+    {
+      "serviceId": "cutxwyn8jwn",
+      "serviceName": "ACME Rideshare Core",
+      "links": [
+        {
+          "initiatorServiceId": "cutxwyn8jwn",
+          "remoteServiceId": "f4me4ykpyp2",
+          "remoteEndpointId": "b01h34rzgkp"
+        },
+        {
+          "initiatorServiceId": "cutxwyn8jwn",
+          "remoteServiceId": "qz6t09437qp",
+          "remoteEndpointId": "463n06mptdv"
+        },
+        {
+          "initiatorServiceId": "47zy5s1of30",
+          "remoteServiceId": "cutxwyn8jwn",
+          "remoteEndpointId": "0t66psr45ca"
+        }
+      ]
+    },
+    {
+      "serviceId": "47zy5s1of30",
+      "serviceName": "ACME Rideshare Partner JP",
+      "links": [
+        {
+          "initiatorServiceId": "47zy5s1of30",
+          "remoteServiceId": "f4me4ykpyp2",
+          "remoteEndpointId": "b01h34rzgkp"
+        },
+        {
+          "initiatorServiceId": "47zy5s1of30",
+          "remoteServiceId": "qz6t09437qp",
+          "remoteEndpointId": "463n06mptdv"
+        },
+        {
+          "initiatorServiceId": "47zy5s1of30",
+          "remoteServiceId": "cutxwyn8jwn",
+          "remoteEndpointId": "0t66psr45ca"
+        }
+      ]
+    }
+  ]
+}

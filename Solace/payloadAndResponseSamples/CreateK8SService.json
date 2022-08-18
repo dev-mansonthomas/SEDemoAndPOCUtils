@@ -1,0 +1,38 @@
+{
+  "type": "service",
+  "name": "ACME Rideshare Partner US",
+  "serviceTypeId": "enterprise",
+  "serviceClassId": "enterprise-250-nano",
+  "adminState": "start",
+  "redundancyGroupSslEnabled": true,
+  "datacenterId": "gke-gcp-us-central1-a",
+  "partitionId": "default",
+  "eventBrokerVersion": "10.0",
+  "msgVpnName": "acme-rideshare-partner-us",
+  "messagingStorage": 25,
+  "serviceConnectionEndpoints": [
+    {
+      "name": "Public Endpoint",
+      "description": "",
+      "accessType": "public",
+      "type": "LoadBalancer",
+      "ports": {
+        "serviceSmfPlainTextListenPort": 0,
+        "serviceSmfCompressedListenPort": 0,
+        "serviceSmfTlsListenPort": 55443,
+        "serviceWebPlainTextListenPort": 0,
+        "serviceWebTlsListenPort": 443,
+        "serviceAmqpPlainTextListenPort": 0,
+        "serviceAmqpTlsListenPort": 5671,
+        "serviceMqttPlainTextListenPort": 0,
+        "serviceMqttWebSocketListenPort": 0,
+        "serviceMqttTlsListenPort": 8883,
+        "serviceMqttTlsWebSocketListenPort": 8443,
+        "serviceRestIncomingPlainTextListenPort": 0,
+        "serviceRestIncomingTlsListenPort": 9443,
+        "serviceManagementTlsListenPort": 943,
+        "managementSshTlsListenPort": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,330 @@
+{
+  "data" : [ {
+    "type" : "service",
+    "timestamp" : 0,
+    "userId" : "dhrcpur99hk",
+    "serviceId" : "jy01drr39sv",
+    "infrastructureId" : "9fyrfn2i8e6",
+    "name" : "ACME Rideshare Partner US",
+    "msgVpnName" : "acme-rideshare-partner-us",
+    "datacenterId" : "gke-gcp-us-central1-a",
+    "datacenterProvider" : "gcp",
+    "attributes" : {
+      "customizedMessagingPorts" : { },
+      "customizedResourceNames" : {
+        "dmrClusterName" : "cluster-gke-gcp-us-central1-a-9fyrfn2i8e6",
+        "redundancyGroupSslEnabled" : "true"
+      },
+      "monitoring" : { }
+    },
+    "serviceTypeId" : "enterprise",
+    "serviceClassId" : "enterprise-250-nano",
+    "adminState" : "start",
+    "adminProgress" : "completed",
+    "created" : 1660731528607,
+    "creationState" : "completed",
+    "msgVpnAttributes" : { },
+    "locked" : false,
+    "messagingStorage" : 25,
+    "serviceStage" : "generalavailability",
+    "servicePackageId" : "DH-V21.0",
+    "serviceClassDisplayedAttributes" : {
+      "High Availability" : "HA Group",
+      "Network Speed" : "450 Mbps",
+      "Storage" : "25 GB",
+      "Message Broker Tenancy" : "Dedicated",
+      "Queues" : "250",
+      "Clients" : "250",
+      "Network Usage" : "50 GB per month"
+    },
+    "accountingLimits" : [ {
+      "id" : "NetworkUsage",
+      "value" : "50000000000",
+      "unit" : "bytes",
+      "thresholds" : [ {
+        "type" : "warning",
+        "value" : "75"
+      } ]
+    } ],
+    "certificateAuthorities" : [ ],
+    "clientCertificateAuthorities" : [ ],
+    "domainCertificateAuthorities" : [ ],
+    "clientProfiles" : [ ],
+    "redundancyGroupSslEnabled" : true,
+    "ldapAuthenticationProfiles" : [ ],
+    "privateServiceConnectionEndpointsEnabled" : false,
+    "serviceConnectionEndpoints" : [ {
+      "serviceConnectionEndpointId" : "rxkw8h0aj7s",
+      "name" : "Public Endpoint",
+      "description" : "",
+      "accessType" : "public",
+      "type" : "LoadBalancer",
+      "k8sServiceId" : "nano-production-rxkw8h0aj7s-solace",
+      "hostNames" : [ ],
+      "ports" : {
+        "serviceWebPlainTextListenPort" : 0,
+        "serviceManagementTlsListenPort" : 943,
+        "serviceRestIncomingTlsListenPort" : 9443,
+        "serviceAmqpPlainTextListenPort" : 0,
+        "serviceMqttWebSocketListenPort" : 0,
+        "serviceWebTlsListenPort" : 443,
+        "serviceRestIncomingPlainTextListenPort" : 0,
+        "serviceSmfCompressedListenPort" : 0,
+        "serviceMqttPlainTextListenPort" : 0,
+        "serviceSmfPlainTextListenPort" : 0,
+        "serviceAmqpTlsListenPort" : 5671,
+        "serviceMqttTlsListenPort" : 8883,
+        "serviceSmfTlsListenPort" : 55443,
+        "serviceMqttTlsWebSocketListenPort" : 8443,
+        "managementSshTlsListenPort" : 0
+      }
+    } ]
+  }, {
+    "type" : "service",
+    "timestamp" : 0,
+    "userId" : "dhrcpur99hk",
+    "serviceId" : "ahscwq2fbfe",
+    "infrastructureId" : "pfwsdxyexdk",
+    "name" : "ACME Rideshare Core",
+    "msgVpnName" : "acme-rideshare-core",
+    "datacenterId" : "aks-uksouth",
+    "datacenterProvider" : "aks",
+    "attributes" : {
+      "customizedMessagingPorts" : { },
+      "customizedResourceNames" : {
+        "dmrClusterName" : "cluster-aks-uksouth-pfwsdxyexdk",
+        "redundancyGroupSslEnabled" : "true"
+      },
+      "monitoring" : { }
+    },
+    "serviceTypeId" : "enterprise",
+    "serviceClassId" : "enterprise-250-nano",
+    "adminState" : "start",
+    "adminProgress" : "inProgress",
+    "created" : 1660743004297,
+    "creationState" : "inProgress",
+    "msgVpnAttributes" : { },
+    "locked" : false,
+    "messagingStorage" : 25,
+    "serviceStage" : "generalavailability",
+    "servicePackageId" : "DH-V21.0",
+    "serviceClassDisplayedAttributes" : {
+      "High Availability" : "HA Group",
+      "Network Speed" : "450 Mbps",
+      "Storage" : "25 GB",
+      "Message Broker Tenancy" : "Dedicated",
+      "Queues" : "250",
+      "Clients" : "250",
+      "Network Usage" : "50 GB per month"
+    },
+    "accountingLimits" : [ {
+      "id" : "NetworkUsage",
+      "value" : "50000000000",
+      "unit" : "bytes",
+      "thresholds" : [ {
+        "type" : "warning",
+        "value" : "75"
+      } ]
+    } ],
+    "certificateAuthorities" : [ ],
+    "clientCertificateAuthorities" : [ ],
+    "domainCertificateAuthorities" : [ ],
+    "clientProfiles" : [ ],
+    "redundancyGroupSslEnabled" : true,
+    "ldapAuthenticationProfiles" : [ ],
+    "privateServiceConnectionEndpointsEnabled" : false,
+    "serviceConnectionEndpoints" : [ {
+      "serviceConnectionEndpointId" : "dvscs2zxqkk",
+      "name" : "Public Endpoint",
+      "description" : "",
+      "accessType" : "public",
+      "type" : "LoadBalancer",
+      "hostNames" : [ ],
+      "ports" : {
+        "serviceWebPlainTextListenPort" : 0,
+        "serviceRestIncomingTlsListenPort" : 9443,
+        "serviceManagementTlsListenPort" : 943,
+        "serviceAmqpPlainTextListenPort" : 0,
+        "serviceMqttWebSocketListenPort" : 0,
+        "serviceRestIncomingPlainTextListenPort" : 0,
+        "serviceWebTlsListenPort" : 443,
+        "serviceSmfCompressedListenPort" : 0,
+        "serviceMqttPlainTextListenPort" : 0,
+        "serviceSmfPlainTextListenPort" : 0,
+        "serviceAmqpTlsListenPort" : 5671,
+        "serviceMqttTlsListenPort" : 8883,
+        "serviceSmfTlsListenPort" : 55443,
+        "serviceMqttTlsWebSocketListenPort" : 8443,
+        "managementSshTlsListenPort" : 0
+      }
+    } ]
+  }, {
+    "type" : "service",
+    "timestamp" : 0,
+    "userId" : "dhrcpur99hk",
+    "serviceId" : "f81fze0j4bj",
+    "infrastructureId" : "8klt7fmqkfq",
+    "name" : "ACME Rideshare Partner AF",
+    "msgVpnName" : "acme-rideshare-partner-af",
+    "datacenterId" : "eks-af-south-1b",
+    "datacenterProvider" : "eks",
+    "attributes" : {
+      "customizedMessagingPorts" : { },
+      "customizedResourceNames" : {
+        "dmrClusterName" : "cluster-eks-af-south-1b-8klt7fmqkfq",
+        "redundancyGroupSslEnabled" : "true"
+      },
+      "monitoring" : { }
+    },
+    "serviceTypeId" : "enterprise",
+    "serviceClassId" : "enterprise-250-nano",
+    "adminState" : "start",
+    "adminProgress" : "inProgress",
+    "created" : 1660743004979,
+    "creationState" : "inProgress",
+    "msgVpnAttributes" : { },
+    "locked" : false,
+    "messagingStorage" : 25,
+    "serviceStage" : "generalavailability",
+    "servicePackageId" : "DH-V21.0",
+    "serviceClassDisplayedAttributes" : {
+      "High Availability" : "HA Group",
+      "Network Speed" : "450 Mbps",
+      "Storage" : "25 GB",
+      "Message Broker Tenancy" : "Dedicated",
+      "Queues" : "250",
+      "Clients" : "250",
+      "Network Usage" : "50 GB per month"
+    },
+    "accountingLimits" : [ {
+      "id" : "NetworkUsage",
+      "value" : "50000000000",
+      "unit" : "bytes",
+      "thresholds" : [ {
+        "type" : "warning",
+        "value" : "75"
+      } ]
+    } ],
+    "certificateAuthorities" : [ ],
+    "clientCertificateAuthorities" : [ ],
+    "domainCertificateAuthorities" : [ ],
+    "clientProfiles" : [ ],
+    "redundancyGroupSslEnabled" : true,
+    "ldapAuthenticationProfiles" : [ ],
+    "privateServiceConnectionEndpointsEnabled" : false,
+    "serviceConnectionEndpoints" : [ {
+      "serviceConnectionEndpointId" : "59065hzqw6g",
+      "name" : "Public Endpoint",
+      "description" : "",
+      "accessType" : "public",
+      "type" : "LoadBalancer",
+      "hostNames" : [ ],
+      "ports" : {
+        "serviceWebPlainTextListenPort" : 0,
+        "serviceRestIncomingTlsListenPort" : 9443,
+        "serviceManagementTlsListenPort" : 943,
+        "serviceAmqpPlainTextListenPort" : 0,
+        "serviceMqttWebSocketListenPort" : 0,
+        "serviceRestIncomingPlainTextListenPort" : 0,
+        "serviceWebTlsListenPort" : 443,
+        "serviceSmfCompressedListenPort" : 0,
+        "serviceMqttPlainTextListenPort" : 0,
+        "serviceSmfPlainTextListenPort" : 0,
+        "serviceAmqpTlsListenPort" : 5671,
+        "serviceMqttTlsListenPort" : 8883,
+        "serviceSmfTlsListenPort" : 55443,
+        "serviceMqttTlsWebSocketListenPort" : 8443,
+        "managementSshTlsListenPort" : 0
+      }
+    } ]
+  }, {
+    "type" : "service",
+    "timestamp" : 0,
+    "userId" : "dhrcpur99hk",
+    "serviceId" : "k7xpk63td8r",
+    "infrastructureId" : "4bj49styr65",
+    "name" : "ACME Rideshare Partner JP",
+    "msgVpnName" : "acme-rideshare-partner-jp",
+    "datacenterId" : "eks-ap-northeast-1a",
+    "datacenterProvider" : "eks",
+    "attributes" : {
+      "customizedMessagingPorts" : { },
+      "customizedResourceNames" : {
+        "dmrClusterName" : "cluster-eks-ap-northeast-1a-4bj49styr65",
+        "redundancyGroupSslEnabled" : "true"
+      },
+      "monitoring" : { }
+    },
+    "serviceTypeId" : "enterprise",
+    "serviceClassId" : "enterprise-250-nano",
+    "adminState" : "start",
+    "adminProgress" : "inProgress",
+    "created" : 1660743006215,
+    "creationState" : "inProgress",
+    "msgVpnAttributes" : { },
+    "locked" : false,
+    "messagingStorage" : 25,
+    "serviceStage" : "generalavailability",
+    "servicePackageId" : "DH-V21.0",
+    "serviceClassDisplayedAttributes" : {
+      "High Availability" : "HA Group",
+      "Network Speed" : "450 Mbps",
+      "Storage" : "25 GB",
+      "Message Broker Tenancy" : "Dedicated",
+      "Queues" : "250",
+      "Clients" : "250",
+      "Network Usage" : "50 GB per month"
+    },
+    "accountingLimits" : [ {
+      "id" : "NetworkUsage",
+      "value" : "50000000000",
+      "unit" : "bytes",
+      "thresholds" : [ {
+        "type" : "warning",
+        "value" : "75"
+      } ]
+    } ],
+    "certificateAuthorities" : [ ],
+    "clientCertificateAuthorities" : [ ],
+    "domainCertificateAuthorities" : [ ],
+    "clientProfiles" : [ ],
+    "redundancyGroupSslEnabled" : true,
+    "ldapAuthenticationProfiles" : [ ],
+    "privateServiceConnectionEndpointsEnabled" : false,
+    "serviceConnectionEndpoints" : [ {
+      "serviceConnectionEndpointId" : "by8h762fjqh",
+      "name" : "Public Endpoint",
+      "description" : "",
+      "accessType" : "public",
+      "type" : "LoadBalancer",
+      "hostNames" : [ ],
+      "ports" : {
+        "serviceWebPlainTextListenPort" : 0,
+        "serviceRestIncomingTlsListenPort" : 9443,
+        "serviceManagementTlsListenPort" : 943,
+        "serviceAmqpPlainTextListenPort" : 0,
+        "serviceMqttWebSocketListenPort" : 0,
+        "serviceWebTlsListenPort" : 443,
+        "serviceRestIncomingPlainTextListenPort" : 0,
+        "serviceSmfCompressedListenPort" : 0,
+        "serviceMqttPlainTextListenPort" : 0,
+        "serviceSmfPlainTextListenPort" : 0,
+        "serviceMqttTlsListenPort" : 8883,
+        "serviceAmqpTlsListenPort" : 5671,
+        "serviceSmfTlsListenPort" : 55443,
+        "serviceMqttTlsWebSocketListenPort" : 8443,
+        "managementSshTlsListenPort" : 0
+      }
+    } ]
+  } ],
+  "meta" : {
+    "currentTime" : 1660743157524,
+    "pages" : {
+      "next-page" : null,
+      "total-pages" : 1
+    },
+    "pageNumber" : 0,
+    "count" : 4,
+    "pageSize" : 100
+  }
+}

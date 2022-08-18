@@ -22,9 +22,6 @@ $servicesConfig = new ServicesConfig(
     'ACME Event Mesh');
 
 
-$service = new Service($servicesConfig);
-$service->createServices();
-
-$service->waitForServicesCreation();
-
-echo "all services created";
+$service     = new Service($servicesConfig);
+$serviceList = $service->getMyServiceList();
+print_r($serviceList);

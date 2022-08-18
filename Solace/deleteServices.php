@@ -18,15 +18,18 @@ $servicesConfig = new ServicesConfig(
     new ServiceConfig("ACME Rideshare Partner AF", "eks-af-south-1b"      ),
     new ServiceConfig("ACME Rideshare Partner US", "gke-gcp-us-central1-a"),
     new ServiceConfig("ACME Rideshare Partner JP", "eks-ap-northeast-1a"  )
-]);
+],
+    'ACME Event Mesh');
 
 
 $service     = new Service($servicesConfig);
-$serviceList = $service->getMyServices();
-
+$serviceList = $service->getMyServiceList();
+//print_r($serviceList);
+echo "===========================================================";
 foreach ($serviceList as $myService)
 {
-    print_r($myService);
+    //print_r($myService);
+    echo "deleting service name='".$myService['name']."' id='".$myService['serviceId']."' ";
     $service->deleteService($myService['serviceId']);
 }
 
