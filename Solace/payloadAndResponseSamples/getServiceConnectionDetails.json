@@ -1,0 +1,734 @@
+{
+  "data": {
+    "type": "service",
+    "timestamp": 0,
+    "userId": "dhrcpur99hk",
+    "serviceId": "lhv1xvfdqso",
+    "infrastructureId": "3b4f2y5iovl",
+    "name": "ACME Rideshare Core",
+    "msgVpnName": "acme-rideshare-core",
+    "datacenterId": "aks-uksouth",
+    "datacenterProvider": "aks",
+    "attributes": {
+      "customizedMessagingPorts": {},
+      "backupNatGatewayPublicIp": "",
+      "primaryNatGatewayPublicIp": "",
+      "customizedResourceNames": {
+        "dmrClusterName": "cluster-aks-uksouth-3b4f2y5iovl",
+        "redundancyGroupSslEnabled": "true"
+      },
+      "monitoring": {
+        "monitoringMode": "advanced",
+        "solaceDatadogAgentImage": "868978040651.dkr.ecr.us-east-1.amazonaws.com/solace-datadog-agent:0",
+        "monitoringAgentEnabled": true
+      }
+    },
+    "serviceTypeId": "enterprise",
+    "serviceClassId": "enterprise-250-nano",
+    "adminState": "start",
+    "adminProgress": "completed",
+    "created": 1661241029412,
+    "creationState": "completed",
+    "messagingProtocols": [
+      {
+        "name": "MQTT",
+        "username": "solace-cloud-client",
+        "password": "xxxxxxxxxxxxxx",
+        "endPoints": [
+          {
+            "name": "Secured MQTT",
+            "transport": "SSL",
+            "uris": [
+              "ssl://mr-connection-0523aajerzu.messaging.solace.cloud:8883"
+            ],
+            "secured": "yes",
+            "compressed": "no",
+            "protocolUrlTemplate": {
+              "template": "ssl://{host}:{port}",
+              "protocolName": "serviceMqttTlsListenPort"
+            }
+          },
+          {
+            "name": "WebSocket Secured MQTT",
+            "transport": "WSS",
+            "uris": [
+              "wss://mr-connection-0523aajerzu.messaging.solace.cloud:8443"
+            ],
+            "secured": "yes",
+            "compressed": "no",
+            "protocolUrlTemplate": {
+              "template": "wss://{host}:{port}",
+              "protocolName": "serviceMqttTlsWebSocketListenPort"
+            }
+          }
+        ],
+        "limits": {}
+      },
+      {
+        "name": "JMS",
+        "username": "solace-cloud-client",
+        "password": "xxxxxxxxxxxxxx",
+        "endPoints": [
+          {
+            "name": "Secured JMS",
+            "transport": "TLS",
+            "uris": [
+              "smfs://mr-connection-0523aajerzu.messaging.solace.cloud:55443"
+            ],
+            "secured": "yes",
+            "compressed": "no",
+            "protocolUrlTemplate": {
+              "template": "smfs://{host}:{port}",
+              "protocolName": "serviceSmfTlsListenPort"
+            }
+          }
+        ],
+        "limits": {}
+      },
+      {
+        "name": "REST",
+        "username": "solace-cloud-client",
+        "password": "xxxxxxxxxxxxxx",
+        "endPoints": [
+          {
+            "name": "Secured REST",
+            "transport": "HTTPS",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:9443"
+            ],
+            "secured": "yes",
+            "compressed": "no",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}",
+              "protocolName": "serviceRestIncomingTlsListenPort"
+            }
+          }
+        ],
+        "limits": {}
+      },
+      {
+        "name": "AMQP",
+        "username": "solace-cloud-client",
+        "password": "xxxxxxxxxxxxxx",
+        "endPoints": [
+          {
+            "name": "Secured AMQP",
+            "transport": "AMQPS",
+            "uris": [
+              "amqps://mr-connection-0523aajerzu.messaging.solace.cloud:5671"
+            ],
+            "secured": "yes",
+            "compressed": "no",
+            "protocolUrlTemplate": {
+              "template": "amqps://{host}:{port}",
+              "protocolName": "serviceAmqpTlsListenPort"
+            }
+          }
+        ],
+        "limits": {}
+      },
+      {
+        "name": "SMF",
+        "username": "solace-cloud-client",
+        "password": "xxxxxxxxxxxxxx",
+        "endPoints": [
+          {
+            "name": "Secured SMF",
+            "transport": "TLS",
+            "uris": [
+              "tcps://mr-connection-0523aajerzu.messaging.solace.cloud:55443"
+            ],
+            "secured": "yes",
+            "compressed": "no",
+            "protocolUrlTemplate": {
+              "template": "tcps://{host}:{port}",
+              "protocolName": "serviceSmfTlsListenPort"
+            }
+          }
+        ],
+        "limits": {}
+      },
+      {
+        "name": "Web Messaging",
+        "username": "solace-cloud-client",
+        "password": "xxxxxxxxxxxxxx",
+        "endPoints": [
+          {
+            "name": "Secured Web Messaging",
+            "transport": "WSS or HTTPS",
+            "uris": [
+              "wss://mr-connection-0523aajerzu.messaging.solace.cloud:443"
+            ],
+            "secured": "yes",
+            "compressed": "no",
+            "protocolUrlTemplate": {
+              "template": "wss://{host}:{port}",
+              "protocolName": "serviceWebTlsListenPort"
+            }
+          }
+        ],
+        "limits": {}
+      }
+    ],
+    "managementProtocols": [
+      {
+        "name": "SolAdmin Read-Only",
+        "username": "acme-rideshare-core-view",
+        "password": "xxxxxxxxxxxxxx",
+        "endPoints": [
+          {
+            "name": "Secured Management",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943"
+            ],
+            "secured": "yes",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          }
+        ],
+        "limits": {}
+      },
+      {
+        "name": "Web UI",
+        "username": "acme-rideshare-core-admin",
+        "password": "xxxxxxxxxxxxxx",
+        "endPoints": [
+          {
+            "name": "Secured Configure Service",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==?token=YWJj.eyJhY2Nlc3NfdG9rZW4iOiAiYWNtZS1yaWRlc2hhcmUtY29yZS1hZG1pbjpjazhlaXRzOHZzOW9pMW1yMTJoMGZtYXRqdCJ9.eHl6&title=ACME+Rideshare+Core&subtitle=acme-rideshare-core"
+            ],
+            "secured": "yes",
+            "authenticated": "yes",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==?token=YWJj.eyJhY2Nlc3NfdG9rZW4iOiAiYWNtZS1yaWRlc2hhcmUtY29yZS1hZG1pbjpjazhlaXRzOHZzOW9pMW1yMTJoMGZtYXRqdCJ9.eHl6&title=ACME+Rideshare+Core&subtitle=acme-rideshare-core",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          },
+          {
+            "name": "Secured Configure Clients",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/client/clients-summary?token=YWJj.eyJhY2Nlc3NfdG9rZW4iOiAiYWNtZS1yaWRlc2hhcmUtY29yZS1hZG1pbjpjazhlaXRzOHZzOW9pMW1yMTJoMGZtYXRqdCJ9.eHl6&title=ACME+Rideshare+Core&subtitle=acme-rideshare-core"
+            ],
+            "secured": "yes",
+            "authenticated": "yes",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/client/clients-summary?token=YWJj.eyJhY2Nlc3NfdG9rZW4iOiAiYWNtZS1yaWRlc2hhcmUtY29yZS1hZG1pbjpjazhlaXRzOHZzOW9pMW1yMTJoMGZtYXRqdCJ9.eHl6&title=ACME+Rideshare+Core&subtitle=acme-rideshare-core",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          },
+          {
+            "name": "Secured Configure Queues",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/endpoints/queues?token=YWJj.eyJhY2Nlc3NfdG9rZW4iOiAiYWNtZS1yaWRlc2hhcmUtY29yZS1hZG1pbjpjazhlaXRzOHZzOW9pMW1yMTJoMGZtYXRqdCJ9.eHl6&title=ACME+Rideshare+Core&subtitle=acme-rideshare-core"
+            ],
+            "secured": "yes",
+            "authenticated": "yes",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/endpoints/queues?token=YWJj.eyJhY2Nlc3NfdG9rZW4iOiAiYWNtZS1yaWRlc2hhcmUtY29yZS1hZG1pbjpjazhlaXRzOHZzOW9pMW1yMTJoMGZtYXRqdCJ9.eHl6&title=ACME+Rideshare+Core&subtitle=acme-rideshare-core",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          },
+          {
+            "name": "Secured Configure Access Control",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/access-ctrl/authentication-detail/settings?token=YWJj.eyJhY2Nlc3NfdG9rZW4iOiAiYWNtZS1yaWRlc2hhcmUtY29yZS1hZG1pbjpjazhlaXRzOHZzOW9pMW1yMTJoMGZtYXRqdCJ9.eHl6&title=ACME+Rideshare+Core&subtitle=acme-rideshare-core"
+            ],
+            "secured": "yes",
+            "authenticated": "yes",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/access-ctrl/authentication-detail/settings?token=YWJj.eyJhY2Nlc3NfdG9rZW4iOiAiYWNtZS1yaWRlc2hhcmUtY29yZS1hZG1pbjpjazhlaXRzOHZzOW9pMW1yMTJoMGZtYXRqdCJ9.eHl6&title=ACME+Rideshare+Core&subtitle=acme-rideshare-core",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          },
+          {
+            "name": "Secured Configure Bridges",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/bridge/bridges?token=YWJj.eyJhY2Nlc3NfdG9rZW4iOiAiYWNtZS1yaWRlc2hhcmUtY29yZS1hZG1pbjpjazhlaXRzOHZzOW9pMW1yMTJoMGZtYXRqdCJ9.eHl6&title=ACME+Rideshare+Core&subtitle=acme-rideshare-core"
+            ],
+            "secured": "yes",
+            "authenticated": "yes",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/bridge/bridges?token=YWJj.eyJhY2Nlc3NfdG9rZW4iOiAiYWNtZS1yaWRlc2hhcmUtY29yZS1hZG1pbjpjazhlaXRzOHZzOW9pMW1yMTJoMGZtYXRqdCJ9.eHl6&title=ACME+Rideshare+Core&subtitle=acme-rideshare-core",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          },
+          {
+            "name": "Secured Configure Cache",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/cache?token=YWJj.eyJhY2Nlc3NfdG9rZW4iOiAiYWNtZS1yaWRlc2hhcmUtY29yZS1hZG1pbjpjazhlaXRzOHZzOW9pMW1yMTJoMGZtYXRqdCJ9.eHl6&title=ACME+Rideshare+Core&subtitle=acme-rideshare-core"
+            ],
+            "secured": "yes",
+            "authenticated": "yes",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/cache?token=YWJj.eyJhY2Nlc3NfdG9rZW4iOiAiYWNtZS1yaWRlc2hhcmUtY29yZS1hZG1pbjpjazhlaXRzOHZzOW9pMW1yMTJoMGZtYXRqdCJ9.eHl6&title=ACME+Rideshare+Core&subtitle=acme-rideshare-core",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          },
+          {
+            "name": "Secured Unauthenticated Configure Service",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==?title=ACME+Rideshare+Core&subtitle=acme-rideshare-core"
+            ],
+            "secured": "yes",
+            "authenticated": "no",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==?title=ACME+Rideshare+Core&subtitle=acme-rideshare-core",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          },
+          {
+            "name": "Secured Unauthenticated Configure Clients",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/client/clients-summary?title=ACME+Rideshare+Core&subtitle=acme-rideshare-core"
+            ],
+            "secured": "yes",
+            "authenticated": "no",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/client/clients-summary?title=ACME+Rideshare+Core&subtitle=acme-rideshare-core",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          },
+          {
+            "name": "Secured Unauthenticated Configure Queues",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/endpoints/queues?title=ACME+Rideshare+Core&subtitle=acme-rideshare-core"
+            ],
+            "secured": "yes",
+            "authenticated": "no",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/endpoints/queues?title=ACME+Rideshare+Core&subtitle=acme-rideshare-core",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          },
+          {
+            "name": "Secured Unauthenticated Configure Access Control",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/access-ctrl/authentication-detail/settings?title=ACME+Rideshare+Core&subtitle=acme-rideshare-core"
+            ],
+            "secured": "yes",
+            "authenticated": "no",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/access-ctrl/authentication-detail/settings?title=ACME+Rideshare+Core&subtitle=acme-rideshare-core",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          },
+          {
+            "name": "Secured Unauthenticated Configure Bridges",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/bridge/bridges?title=ACME+Rideshare+Core&subtitle=acme-rideshare-core"
+            ],
+            "secured": "yes",
+            "authenticated": "no",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/bridge/bridges?title=ACME+Rideshare+Core&subtitle=acme-rideshare-core",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          },
+          {
+            "name": "Secured Unauthenticated Configure Cache",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/cache?title=ACME+Rideshare+Core&subtitle=acme-rideshare-core"
+            ],
+            "secured": "yes",
+            "authenticated": "no",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/cache?title=ACME+Rideshare+Core&subtitle=acme-rideshare-core",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          }
+        ],
+        "limits": {}
+      },
+      {
+        "name": "SEMP",
+        "username": "acme-rideshare-core-admin",
+        "password": "xxxxxxxxxxx",
+        "endPoints": [
+          {
+            "name": "Secured SEMP Help",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/SEMP/v2/config/help"
+            ],
+            "secured": "yes",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/SEMP/v2/config/help",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          },
+          {
+            "name": "Secured SEMP Spec",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/SEMP/v2/config/spec"
+            ],
+            "secured": "yes",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/SEMP/v2/config/spec",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          },
+          {
+            "name": "Secured SEMP System Info",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/SEMP/v2/config/systemInformation"
+            ],
+            "secured": "yes",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/SEMP/v2/config/systemInformation",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          },
+          {
+            "name": "Secured SEMP Config",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/SEMP/v2/config"
+            ],
+            "secured": "yes",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/SEMP/v2/config",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          }
+        ],
+        "limits": {}
+      },
+      {
+        "name": "SEMP Read-Only",
+        "username": "acme-rideshare-core-view",
+        "password": "xxxxxxxxxxxxxx",
+        "endPoints": [
+          {
+            "name": "Secured SEMP Help",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/SEMP/v2/config/help"
+            ],
+            "secured": "yes",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/SEMP/v2/config/help",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          },
+          {
+            "name": "Secured SEMP Spec",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/SEMP/v2/config/spec"
+            ],
+            "secured": "yes",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/SEMP/v2/config/spec",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          },
+          {
+            "name": "Secured SEMP System Info",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/SEMP/v2/config/systemInformation"
+            ],
+            "secured": "yes",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/SEMP/v2/config/systemInformation",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          },
+          {
+            "name": "Secured SEMP Config",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/SEMP/v2/config"
+            ],
+            "secured": "yes",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/SEMP/v2/config",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          }
+        ],
+        "limits": {}
+      },
+      {
+        "name": "SolAdmin",
+        "username": "acme-rideshare-core-admin",
+        "password": "xxxxxxxxxxxxxx",
+        "endPoints": [
+          {
+            "name": "Secured Management",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943"
+            ],
+            "secured": "yes",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          }
+        ],
+        "limits": {}
+      },
+      {
+        "name": "Web UI Read-Only",
+        "username": "acme-rideshare-core-view",
+        "password": "xxxxxxxxxxxxxx",
+        "endPoints": [
+          {
+            "name": "Secured Configure Service",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==?token=YWJj.eyJhY2Nlc3NfdG9rZW4iOiAiYWNtZS1yaWRlc2hhcmUtY29yZS12aWV3OnJnbGluZjRxOXU5dWlyMTNwZ3M0ZmdwMHJoIn0%3D.eHl6&title=ACME+Rideshare+Core&subtitle=acme-rideshare-core"
+            ],
+            "secured": "yes",
+            "authenticated": "yes",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==?token=YWJj.eyJhY2Nlc3NfdG9rZW4iOiAiYWNtZS1yaWRlc2hhcmUtY29yZS12aWV3OnJnbGluZjRxOXU5dWlyMTNwZ3M0ZmdwMHJoIn0%3D.eHl6&title=ACME+Rideshare+Core&subtitle=acme-rideshare-core",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          },
+          {
+            "name": "Secured Configure Clients",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/client/clients-summary?token=YWJj.eyJhY2Nlc3NfdG9rZW4iOiAiYWNtZS1yaWRlc2hhcmUtY29yZS12aWV3OnJnbGluZjRxOXU5dWlyMTNwZ3M0ZmdwMHJoIn0%3D.eHl6&title=ACME+Rideshare+Core&subtitle=acme-rideshare-core"
+            ],
+            "secured": "yes",
+            "authenticated": "yes",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/client/clients-summary?token=YWJj.eyJhY2Nlc3NfdG9rZW4iOiAiYWNtZS1yaWRlc2hhcmUtY29yZS12aWV3OnJnbGluZjRxOXU5dWlyMTNwZ3M0ZmdwMHJoIn0%3D.eHl6&title=ACME+Rideshare+Core&subtitle=acme-rideshare-core",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          },
+          {
+            "name": "Secured Configure Queues",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/endpoints/queues?token=YWJj.eyJhY2Nlc3NfdG9rZW4iOiAiYWNtZS1yaWRlc2hhcmUtY29yZS12aWV3OnJnbGluZjRxOXU5dWlyMTNwZ3M0ZmdwMHJoIn0%3D.eHl6&title=ACME+Rideshare+Core&subtitle=acme-rideshare-core"
+            ],
+            "secured": "yes",
+            "authenticated": "yes",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/endpoints/queues?token=YWJj.eyJhY2Nlc3NfdG9rZW4iOiAiYWNtZS1yaWRlc2hhcmUtY29yZS12aWV3OnJnbGluZjRxOXU5dWlyMTNwZ3M0ZmdwMHJoIn0%3D.eHl6&title=ACME+Rideshare+Core&subtitle=acme-rideshare-core",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          },
+          {
+            "name": "Secured Configure Access Control",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/access-ctrl/authentication-detail/settings?token=YWJj.eyJhY2Nlc3NfdG9rZW4iOiAiYWNtZS1yaWRlc2hhcmUtY29yZS12aWV3OnJnbGluZjRxOXU5dWlyMTNwZ3M0ZmdwMHJoIn0%3D.eHl6&title=ACME+Rideshare+Core&subtitle=acme-rideshare-core"
+            ],
+            "secured": "yes",
+            "authenticated": "yes",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/access-ctrl/authentication-detail/settings?token=YWJj.eyJhY2Nlc3NfdG9rZW4iOiAiYWNtZS1yaWRlc2hhcmUtY29yZS12aWV3OnJnbGluZjRxOXU5dWlyMTNwZ3M0ZmdwMHJoIn0%3D.eHl6&title=ACME+Rideshare+Core&subtitle=acme-rideshare-core",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          },
+          {
+            "name": "Secured Configure Bridges",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/bridge/bridges?token=YWJj.eyJhY2Nlc3NfdG9rZW4iOiAiYWNtZS1yaWRlc2hhcmUtY29yZS12aWV3OnJnbGluZjRxOXU5dWlyMTNwZ3M0ZmdwMHJoIn0%3D.eHl6&title=ACME+Rideshare+Core&subtitle=acme-rideshare-core"
+            ],
+            "secured": "yes",
+            "authenticated": "yes",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/bridge/bridges?token=YWJj.eyJhY2Nlc3NfdG9rZW4iOiAiYWNtZS1yaWRlc2hhcmUtY29yZS12aWV3OnJnbGluZjRxOXU5dWlyMTNwZ3M0ZmdwMHJoIn0%3D.eHl6&title=ACME+Rideshare+Core&subtitle=acme-rideshare-core",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          },
+          {
+            "name": "Secured Configure Cache",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/cache?token=YWJj.eyJhY2Nlc3NfdG9rZW4iOiAiYWNtZS1yaWRlc2hhcmUtY29yZS12aWV3OnJnbGluZjRxOXU5dWlyMTNwZ3M0ZmdwMHJoIn0%3D.eHl6&title=ACME+Rideshare+Core&subtitle=acme-rideshare-core"
+            ],
+            "secured": "yes",
+            "authenticated": "yes",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/cache?token=YWJj.eyJhY2Nlc3NfdG9rZW4iOiAiYWNtZS1yaWRlc2hhcmUtY29yZS12aWV3OnJnbGluZjRxOXU5dWlyMTNwZ3M0ZmdwMHJoIn0%3D.eHl6&title=ACME+Rideshare+Core&subtitle=acme-rideshare-core",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          },
+          {
+            "name": "Secured Unauthenticated Configure Service",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==?title=ACME+Rideshare+Core&subtitle=acme-rideshare-core"
+            ],
+            "secured": "yes",
+            "authenticated": "no",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==?title=ACME+Rideshare+Core&subtitle=acme-rideshare-core",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          },
+          {
+            "name": "Secured Unauthenticated Configure Clients",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/client/clients-summary?title=ACME+Rideshare+Core&subtitle=acme-rideshare-core"
+            ],
+            "secured": "yes",
+            "authenticated": "no",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/client/clients-summary?title=ACME+Rideshare+Core&subtitle=acme-rideshare-core",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          },
+          {
+            "name": "Secured Unauthenticated Configure Queues",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/endpoints/queues?title=ACME+Rideshare+Core&subtitle=acme-rideshare-core"
+            ],
+            "secured": "yes",
+            "authenticated": "no",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/endpoints/queues?title=ACME+Rideshare+Core&subtitle=acme-rideshare-core",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          },
+          {
+            "name": "Secured Unauthenticated Configure Access Control",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/access-ctrl/authentication-detail/settings?title=ACME+Rideshare+Core&subtitle=acme-rideshare-core"
+            ],
+            "secured": "yes",
+            "authenticated": "no",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/access-ctrl/authentication-detail/settings?title=ACME+Rideshare+Core&subtitle=acme-rideshare-core",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          },
+          {
+            "name": "Secured Unauthenticated Configure Bridges",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/bridge/bridges?title=ACME+Rideshare+Core&subtitle=acme-rideshare-core"
+            ],
+            "secured": "yes",
+            "authenticated": "no",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/bridge/bridges?title=ACME+Rideshare+Core&subtitle=acme-rideshare-core",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          },
+          {
+            "name": "Secured Unauthenticated Configure Cache",
+            "uris": [
+              "https://mr-connection-0523aajerzu.messaging.solace.cloud:943/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/cache?title=ACME+Rideshare+Core&subtitle=acme-rideshare-core"
+            ],
+            "secured": "yes",
+            "authenticated": "no",
+            "protocolUrlTemplate": {
+              "template": "https://{host}:{port}/#/msg-vpns/YWNtZS1yaWRlc2hhcmUtY29yZQ==/cache?title=ACME+Rideshare+Core&subtitle=acme-rideshare-core",
+              "protocolName": "serviceManagementTlsListenPort"
+            }
+          }
+        ],
+        "limits": {}
+      }
+    ],
+    "msgVpnAttributes": {
+      "vpnEventLargeMsgThreshold": "11",
+      "authenticationClientCertValidateDateEnabled": "false",
+      "vpnMaxConnectionCount": "250",
+      "vpnAdminUsername": "acme-rideshare-core-admin",
+      "vpnMaxTransactedSessionCount": "500",
+      "subDomainName": "mr-connection-0523aajerzu.messaging.solace.cloud",
+      "vmrVersion": "10.0.1.41",
+      "vpnAdminPassword": "xxxxxxxxxxxxxx",
+      "vpnName": "acme-rideshare-core",
+      "vpnMaxTransactionCount": "2500",
+      "vpnMaxMsgSpoolUsage": "25000",
+      "vpnMaxEndpointCount": "250",
+      "vpnMaxEgressFlowCount": "250",
+      "vpnMaxSubscriptionCount": "50000",
+      "authenticationClientCertEnabled": "false",
+      "vpnEnabled": "true",
+      "truststoreUri": "https://cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem",
+      "authenticationBasicEnabled": "true",
+      "authenticationOauthEnabled": "false",
+      "authenticationBasicType": "internal",
+      "vpnMaxIngressFlowCount": "250"
+    },
+    "locked": false,
+    "messagingStorage": 25,
+    "serviceStage": "generalavailability",
+    "servicePackageId": "DH-V21.0",
+    "eventBrokerVersion": "10.0",
+    "serviceClassDisplayedAttributes": {
+      "High Availability": "HA Group",
+      "Network Speed": "450 Mbps",
+      "Storage": "25 GB",
+      "Message Broker Tenancy": "Dedicated",
+      "Queues": "250",
+      "Clients": "250",
+      "Network Usage": "50 GB per month"
+    },
+    "accountingLimits": [
+      {
+        "id": "NetworkUsage",
+        "value": "50000000000",
+        "unit": "bytes",
+        "thresholds": [
+          {
+            "type": "warning",
+            "value": "75"
+          }
+        ]
+      }
+    ],
+    "certificateAuthorities": [],
+    "clientCertificateAuthorities": [],
+    "domainCertificateAuthorities": [],
+    "clientProfiles": [
+      "default"
+    ],
+    "cluster": {
+      "name": "cluster-aks-uksouth-3b4f2y5iovl",
+      "password": "xxxxxxxxxxxxxx",
+      "remoteAddress": "mr-connection-0523aajerzu.messaging.solace.cloud",
+      "primaryRouterName": "nanoproduction3b4f2y5iovlsolaceprimary0",
+      "backupRouterName": "nanoproduction3b4f2y5iovlsolacebackup0",
+      "monitoringRouterName": "nanoproduction3b4f2y5iovlsolacemonitor0",
+      "supportedAuthenticationMode": [
+        "Basic"
+      ]
+    },
+    "redundancyGroupSslEnabled": true,
+    "configSyncSslEnabled": true,
+    "ldapAuthenticationProfiles": [],
+    "sempOverMsgBus": {
+      "sempOverMsgBusEnabled": false,
+      "sempAccessToShowCmdsEnabled": false,
+      "sempAccessToAdminCmdsEnabled": false,
+      "sempAccessToClientAdminCmdsEnabled": false,
+      "sempAccessToCacheCmdsEnabled": false
+    },
+    "tlsStandardDomainCertificateAuthoritiesEnabled": true,
+    "privateServiceConnectionEndpointsEnabled": false,
+    "serviceConnectionEndpoints": [
+      {
+        "serviceConnectionEndpointId": "0523aajerzu",
+        "name": "Public Endpoint",
+        "description": "",
+        "accessType": "public",
+        "type": "LoadBalancer",
+        "k8sServiceId": "nano-production-0523aajerzu-solace",
+        "hostNames": [
+          "mr-connection-0523aajerzu.messaging.solace.cloud"
+        ],
+        "ports": {
+          "serviceWebPlainTextListenPort": 0,
+          "serviceManagementTlsListenPort": 943,
+          "serviceRestIncomingTlsListenPort": 9443,
+          "serviceAmqpPlainTextListenPort": 0,
+          "serviceMqttWebSocketListenPort": 0,
+          "serviceWebTlsListenPort": 443,
+          "serviceRestIncomingPlainTextListenPort": 0,
+          "serviceSmfCompressedListenPort": 0,
+          "serviceMqttPlainTextListenPort": 0,
+          "serviceSmfPlainTextListenPort": 0,
+          "serviceMqttTlsListenPort": 8883,
+          "serviceAmqpTlsListenPort": 5671,
+          "serviceSmfTlsListenPort": 55443,
+          "serviceMqttTlsWebSocketListenPort": 8443,
+          "managementSshTlsListenPort": 0
+        }
+      }
+    ]
+  },
+  "meta": {
+    "currentTime": 1661268996184
+  }
+}

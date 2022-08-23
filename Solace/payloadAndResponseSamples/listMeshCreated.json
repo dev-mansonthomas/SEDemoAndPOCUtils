@@ -1,0 +1,118 @@
+{
+  "data" : [ {
+    "id" : "w03fn6swawj",
+    "name" : "testmesh3",
+    "orgId" : "solaceevangelists",
+    "createdAt" : 1661247758036,
+    "updatedAt" : 1661247798265,
+    "clusters" : [ {
+      "id" : "al2gtfw2yqr",
+      "organization" : "solaceevangelists",
+      "enabled" : true,
+      "externalLinks" : [ {
+        "initiatorCluster" : "al2gtfw2yqr",
+        "acceptorCluster" : "itc9b4w5b30",
+        "initiatorInfrastructure" : "l2bsz5o2ypx",
+        "acceptorInfrastructure" : "we7ex2htubz",
+        "remoteNodeName" : "kiloproductionwe7ex2htubzsolaceprimary0",
+        "localNodeName" : "single-aws-ca-central-1a-l2bsz5o2ypx",
+        "enabled" : true,
+        "compression" : false,
+        "ssl" : true,
+        "initiator" : "REMOTE",
+        "operationalState" : "up",
+        "createdAt" : 1661247798133,
+        "failureReason" : "",
+        "type" : "externalLink",
+        "id" : "al2gtfw2yqr_itc9b4w5b30"
+      } ],
+      "infrastructures" : [ {
+        "id" : "l2bsz5o2ypx",
+        "clusterId" : "al2gtfw2yqr",
+        "remoteNodeName" : "kiloproductionwe7ex2htubzsolaceprimary0",
+        "services" : [ {
+          "msgVpnName" : "Test_VPN",
+          "serviceClassId" : "developer",
+          "dmrBridges" : [ {
+            "initiatorService" : "1gina5b301o",
+            "acceptorService" : "9zywv1beyf6",
+            "localNodeName" : "single-aws-ca-central-1a-l2bsz5o2ypx",
+            "remoteNodeName" : "kiloproductionwe7ex2htubzsolaceprimary0",
+            "operationalState" : "up",
+            "type" : "dmrBridge",
+            "id" : "1gina5b301o_9zywv1beyf6"
+          } ],
+          "type" : "service"
+        } ],
+        "type" : "infrastructure"
+      } ],
+      "localNodeName" : "single-aws-ca-central-1a-l2bsz5o2ypx",
+      "authenticationBasicEnabled" : true,
+      "authenticationBasicType" : "INTERNAL",
+      "authenticationClientCertEnabled" : false,
+      "directOnlyEnabled" : false,
+      "services" : [ "1gina5b301o" ],
+      "type" : "cluster"
+    }, {
+      "id" : "itc9b4w5b30",
+      "organization" : "solaceevangelists",
+      "enabled" : true,
+      "externalLinks" : [ {
+        "initiatorCluster" : "itc9b4w5b30",
+        "acceptorCluster" : "al2gtfw2yqr",
+        "initiatorInfrastructure" : "we7ex2htubz",
+        "acceptorInfrastructure" : "l2bsz5o2ypx",
+        "remoteNodeName" : "single-aws-ca-central-1a-l2bsz5o2ypx",
+        "localNodeName" : "kiloproductionwe7ex2htubzsolaceprimary0",
+        "enabled" : true,
+        "compression" : false,
+        "ssl" : true,
+        "initiator" : "LOCAL",
+        "operationalState" : "up",
+        "createdAt" : 1661247798157,
+        "failureReason" : "",
+        "type" : "externalLink",
+        "id" : "itc9b4w5b30_al2gtfw2yqr"
+      } ],
+      "infrastructures" : [ {
+        "id" : "we7ex2htubz",
+        "clusterId" : "itc9b4w5b30",
+        "remoteNodeName" : "single-aws-ca-central-1a-l2bsz5o2ypx",
+        "services" : [ {
+          "msgVpnName" : "cecilia-test",
+          "serviceClassId" : "enterprise-kilo",
+          "dmrBridges" : [ {
+            "initiatorService" : "9zywv1beyf6",
+            "acceptorService" : "1gina5b301o",
+            "localNodeName" : "kiloproductionwe7ex2htubzsolaceprimary0",
+            "remoteNodeName" : "single-aws-ca-central-1a-l2bsz5o2ypx",
+            "operationalState" : "up",
+            "type" : "dmrBridge",
+            "id" : "9zywv1beyf6_1gina5b301o"
+          } ],
+          "type" : "service"
+        } ],
+        "type" : "infrastructure"
+      } ],
+      "localNodeName" : "kiloproductionwe7ex2htubzsolaceprimary0",
+      "authenticationBasicEnabled" : true,
+      "authenticationBasicType" : "INTERNAL",
+      "authenticationClientCertEnabled" : false,
+      "directOnlyEnabled" : false,
+      "services" : [ "9zywv1beyf6" ],
+      "type" : "cluster"
+    } ],
+    "state" : "ready",
+    "type" : "eventMesh"
+  } ],
+  "meta" : {
+    "currentTime" : 1661247818841,
+    "pages" : {
+      "next-page" : null,
+      "total-pages" : 1
+    },
+    "pageNumber" : 0,
+    "count" : 1,
+    "pageSize" : 20
+  }
+}

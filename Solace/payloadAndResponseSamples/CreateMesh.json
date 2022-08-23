@@ -1,93 +1,93 @@
 {
-  "eventMeshName": "ACME Event Mesh",
+  "eventMeshName": "ACME Event Mesh 2",
   "services": [
-    "f4me4ykpyp2",
-    "qz6t09437qp",
-    "cutxwyn8jwn",
-    "47zy5s1of30"
+    "9ogls213f9c",
+    "ib2i6xex2c5",
+    "9a5rbjqj5je",
+    "l8hlex1fw4y"
   ],
   "links": [
     {
-      "serviceId": "f4me4ykpyp2",
-      "serviceName": "ACME Rideshare Partner AF",
-      "links": [
-        {
-          "initiatorServiceId": "qz6t09437qp",
-          "remoteServiceId": "f4me4ykpyp2",
-          "remoteEndpointId": "b01h34rzgkp"
-        },
-        {
-          "initiatorServiceId": "cutxwyn8jwn",
-          "remoteServiceId": "f4me4ykpyp2",
-          "remoteEndpointId": "b01h34rzgkp"
-        },
-        {
-          "initiatorServiceId": "47zy5s1of30",
-          "remoteServiceId": "f4me4ykpyp2",
-          "remoteEndpointId": "b01h34rzgkp"
-        }
-      ]
-    },
-    {
-      "serviceId": "qz6t09437qp",
-      "serviceName": "ACME Rideshare Partner US",
-      "links": [
-        {
-          "initiatorServiceId": "qz6t09437qp",
-          "remoteServiceId": "f4me4ykpyp2",
-          "remoteEndpointId": "b01h34rzgkp"
-        },
-        {
-          "initiatorServiceId": "cutxwyn8jwn",
-          "remoteServiceId": "qz6t09437qp",
-          "remoteEndpointId": "463n06mptdv"
-        },
-        {
-          "initiatorServiceId": "47zy5s1of30",
-          "remoteServiceId": "qz6t09437qp",
-          "remoteEndpointId": "463n06mptdv"
-        }
-      ]
-    },
-    {
-      "serviceId": "cutxwyn8jwn",
+      "serviceId": "9ogls213f9c",
       "serviceName": "ACME Rideshare Core",
       "links": [
         {
-          "initiatorServiceId": "cutxwyn8jwn",
-          "remoteServiceId": "f4me4ykpyp2",
-          "remoteEndpointId": "b01h34rzgkp"
+          "initiatorServiceId": "ib2i6xex2c5",
+          "remoteServiceId": "9ogls213f9c",
+          "remoteEndpointId": "u89wgzcueip"
         },
         {
-          "initiatorServiceId": "cutxwyn8jwn",
-          "remoteServiceId": "qz6t09437qp",
-          "remoteEndpointId": "463n06mptdv"
+          "initiatorServiceId": "9a5rbjqj5je",
+          "remoteServiceId": "9ogls213f9c",
+          "remoteEndpointId": "u89wgzcueip"
         },
         {
-          "initiatorServiceId": "47zy5s1of30",
-          "remoteServiceId": "cutxwyn8jwn",
-          "remoteEndpointId": "0t66psr45ca"
+          "initiatorServiceId": "l8hlex1fw4y",
+          "remoteServiceId": "9ogls213f9c",
+          "remoteEndpointId": "u89wgzcueip"
         }
       ]
     },
     {
-      "serviceId": "47zy5s1of30",
+      "serviceId": "ib2i6xex2c5",
+      "serviceName": "ACME Rideshare Partner AF",
+      "links": [
+        {
+          "initiatorServiceId": "ib2i6xex2c5",
+          "remoteServiceId": "9ogls213f9c",
+          "remoteEndpointId": "u89wgzcueip"
+        },
+        {
+          "initiatorServiceId": "9a5rbjqj5je",
+          "remoteServiceId": "ib2i6xex2c5",
+          "remoteEndpointId": "ux1qg1j0d56"
+        },
+        {
+          "initiatorServiceId": "l8hlex1fw4y",
+          "remoteServiceId": "ib2i6xex2c5",
+          "remoteEndpointId": "ux1qg1j0d56"
+        }
+      ]
+    },
+    {
+      "serviceId": "9a5rbjqj5je",
+      "serviceName": "ACME Rideshare Partner US",
+      "links": [
+        {
+          "initiatorServiceId": "9a5rbjqj5je",
+          "remoteServiceId": "9ogls213f9c",
+          "remoteEndpointId": "u89wgzcueip"
+        },
+        {
+          "initiatorServiceId": "9a5rbjqj5je",
+          "remoteServiceId": "ib2i6xex2c5",
+          "remoteEndpointId": "ux1qg1j0d56"
+        },
+        {
+          "initiatorServiceId": "l8hlex1fw4y",
+          "remoteServiceId": "9a5rbjqj5je",
+          "remoteEndpointId": "9je30rb85i8"
+        }
+      ]
+    },
+    {
+      "serviceId": "l8hlex1fw4y",
       "serviceName": "ACME Rideshare Partner JP",
       "links": [
         {
-          "initiatorServiceId": "47zy5s1of30",
-          "remoteServiceId": "f4me4ykpyp2",
-          "remoteEndpointId": "b01h34rzgkp"
+          "initiatorServiceId": "l8hlex1fw4y",
+          "remoteServiceId": "9ogls213f9c",
+          "remoteEndpointId": "u89wgzcueip"
         },
         {
-          "initiatorServiceId": "47zy5s1of30",
-          "remoteServiceId": "qz6t09437qp",
-          "remoteEndpointId": "463n06mptdv"
+          "initiatorServiceId": "l8hlex1fw4y",
+          "remoteServiceId": "ib2i6xex2c5",
+          "remoteEndpointId": "ux1qg1j0d56"
         },
         {
-          "initiatorServiceId": "47zy5s1of30",
-          "remoteServiceId": "cutxwyn8jwn",
-          "remoteEndpointId": "0t66psr45ca"
+          "initiatorServiceId": "l8hlex1fw4y",
+          "remoteServiceId": "9a5rbjqj5je",
+          "remoteEndpointId": "9je30rb85i8"
         }
       ]
     }

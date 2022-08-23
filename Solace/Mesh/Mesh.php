@@ -1,7 +1,8 @@
 <?php
-namespace Solace\Service;
+namespace Solace\Mesh;
 
 use Solace\Broker\Queue;
+use Solace\Service\Service;
 use Solace\Service\ServiceConfig;
 use Solace\Service\ServicesConfig;
 
@@ -10,9 +11,9 @@ class Mesh
     private ServicesConfig $servicesConfig;
     private Service        $service;
 
-    private string $MESH_CREATION_COMPLETED="completed";
-    private string $MESH_CREATION_IN_PROGRESS="inProgress";
-    private string $MESH_CREATION_FAILED="failed";//TODO Check the value
+    private string $MESH_CREATION_COMPLETED="ready";
+    private string $MESH_CREATION_IN_PROGRESS="creating";
+    private string $MESH_CREATION_FAILED="failed";
 
     public function __construct(ServicesConfig $servicesConfig, Service $service)
     {
@@ -23,183 +24,247 @@ class Mesh
 
     function generateFirstPart($method, $path):string
     {
-
-        $myServices = $this->service->getMyServiceList();
-
-
-
-
         return "
-curl --location --request ".$method." '".$this->servicesConfig->cloudAPIURL.$path."' \\
+curl -s --location --request ".$method." '".$this->servicesConfig->cloudAPIURL.$path."' \\
 --header 'Content-Type: application/json'                                            \\
 --header 'Accept: application/json'                                                  \\
 --header 'Authorization: Bearer ".$this->servicesConfig->cloudAPIToken."'            \\
 ";
     }
 
-    public function createMesh(ServiceConfig $serviceConfig):void
+    function logAsDebug($subject, $content):void
     {
+        if($this->servicesConfig->debug)
+        {
+
+
+            printf(  "
+######################################################################################
+# >>>DEBUG<<< START >>>  %-37s <<< START >>>DEBUG<<< #
+######################################################################################
+", $subject);
+
+            echo $content;
+
+            printf(  "
+######################################################################################
+# >>>DEBUG<<< END   >>>  %-37s <<<   END >>>DEBUG<<< #
+######################################################################################
+", $subject);
+
+        }
+
+    }
+
+    public function createMesh():void
+    {
+
+        $myServices = $this->service->getMyServiceList();
+        $serviceList=[];
+        $serviceConnectionEndpointIds=[];
+        foreach ($myServices as $onService)
+        {
+            $serviceList[]=['serviceId'=>$onService['serviceId'], 'serviceName'=>$onService['name']];
+            $serviceConnectionEndpointIds[$onService['serviceId']] = $onService['serviceConnectionEndpoints'][0]['serviceConnectionEndpointId'];
+        }
+
+        $serviceListString = "";
+        $serviceLinksString = "";
+        foreach ($serviceList as $oneService)
+        {
+            $currentService = $oneService['serviceId'];
+            $serviceListString .= "\n    \"".$currentService."\",";
+            /** no need to add objectName prefix here, has serviceName are retrieved from Solace Cloud API*/
+            $serviceLinksString.="
+    {
+      \"serviceId\": \"".$oneService['serviceId']."\",
+      \"serviceName\": \"".$oneService['serviceName']."\",
+      \"links\": [";
+            foreach ($serviceList as $otherService)
+            {
+                if($currentService != $otherService['serviceId'])
+                {
+                    $serviceLinksString.="
+        {
+          \"initiatorServiceId\": \"".$otherService['serviceId']."\",
+          \"remoteServiceId\": \"".$currentService."\",
+          \"remoteEndpointId\": \"".$serviceConnectionEndpointIds[$currentService]."\"
+        },";
+                }
+            }
+            $serviceLinksString = substr( $serviceLinksString, 0, strlen( $serviceLinksString)-1);
+            $serviceLinksString.="
+      ]
+    },";
+
+        }
+        //remove last ","
+        $serviceLinksString = substr($serviceLinksString, 0, strlen($serviceLinksString)-1);
+        $serviceListString  = substr($serviceListString , 0, strlen($serviceListString )-1);
+
+
+
+
         //--header 'Cookie: Session=RrE4kpRYO9gF-djljbx8-R6ieySYAZDkR9cXHDS_WZs' \
         $curlCommand =
             $this->generateFirstPart("POST","/api/v0/meshManager/eventMeshes").
             "--data-raw '{
-  \"eventMeshName\": \"ACME Event Mesh\",
-  \"services\": [
-    \"f4me4ykpyp2\",
-    \"qz6t09437qp\",
-    \"cutxwyn8jwn\",
-    \"47zy5s1of30\"
+  \"eventMeshName\": \"".$this->servicesConfig->objectNamePrefix.$this->servicesConfig->eventMeshName."\",
+  \"services\": [$serviceListString
   ],
-  \"links\": [
-    {
-      \"serviceId\": \"f4me4ykpyp2\",
-      \"serviceName\": \"ACME Rideshare Partner AF\",
-      \"links\": [
-        {
-          \"initiatorServiceId\": \"qz6t09437qp\",
-          \"remoteServiceId\": \"f4me4ykpyp2\",
-          \"remoteEndpointId\": \"b01h34rzgkp\"
-        },
-        {
-          \"initiatorServiceId\": \"cutxwyn8jwn\",
-          \"remoteServiceId\": \"f4me4ykpyp2\",
-          \"remoteEndpointId\": \"b01h34rzgkp\"
-        },
-        {
-          \"initiatorServiceId\": \"47zy5s1of30\",
-          \"remoteServiceId\": \"f4me4ykpyp2\",
-          \"remoteEndpointId\": \"b01h34rzgkp\"
-        }
-      ]
-    },
-    {
-      \"serviceId\": \"qz6t09437qp\",
-      \"serviceName\": \"ACME Rideshare Partner US\",
-      \"links\": [
-        {
-          \"initiatorServiceId\": \"qz6t09437qp\",
-          \"remoteServiceId\": \"f4me4ykpyp2\",
-          \"remoteEndpointId\": \"b01h34rzgkp\"
-        },
-        {
-          \"initiatorServiceId\": \"cutxwyn8jwn\",
-          \"remoteServiceId\": \"qz6t09437qp\",
-          \"remoteEndpointId\": \"463n06mptdv\"
-        },
-        {
-          \"initiatorServiceId\": \"47zy5s1of30\",
-          \"remoteServiceId\": \"qz6t09437qp\",
-          \"remoteEndpointId\": \"463n06mptdv\"
-        }
-      ]
-    },
-    {
-      \"serviceId\": \"cutxwyn8jwn\",
-      \"serviceName\": \"ACME Rideshare Core\",
-      \"links\": [
-        {
-          \"initiatorServiceId\": \"cutxwyn8jwn\",
-          \"remoteServiceId\": \"f4me4ykpyp2\",
-          \"remoteEndpointId\": \"b01h34rzgkp\"
-        },
-        {
-          \"initiatorServiceId\": \"cutxwyn8jwn\",
-          \"remoteServiceId\": \"qz6t09437qp\",
-          \"remoteEndpointId\": \"463n06mptdv\"
-        },
-        {
-          \"initiatorServiceId\": \"47zy5s1of30\",
-          \"remoteServiceId\": \"cutxwyn8jwn\",
-          \"remoteEndpointId\": \"0t66psr45ca\"
-        }
-      ]
-    },
-    {
-      \"serviceId\": \"47zy5s1of30\",
-      \"serviceName\": \"ACME Rideshare Partner JP\",
-      \"links\": [
-        {
-          \"initiatorServiceId\": \"47zy5s1of30\",
-          \"remoteServiceId\": \"f4me4ykpyp2\",
-          \"remoteEndpointId\": \"b01h34rzgkp\"
-        },
-        {
-          \"initiatorServiceId\": \"47zy5s1of30\",
-          \"remoteServiceId\": \"qz6t09437qp\",
-          \"remoteEndpointId\": \"463n06mptdv\"
-        },
-        {
-          \"initiatorServiceId\": \"47zy5s1of30\",
-          \"remoteServiceId\": \"cutxwyn8jwn\",
-          \"remoteEndpointId\": \"0t66psr45ca\"
-        }
-      ]
-    }
+  \"links\": [$serviceLinksString
   ]
 }'
 ";
-        echo "$curlCommand";
-        echo "";
+        $this->logAsDebug("CURL COMMAND",$curlCommand);
         $shellOutput = shell_exec($curlCommand);
-        echo "\n\n\n".$shellOutput."\n\n\n";
+        $this->logAsDebug("CURL OUTPUT",$shellOutput);
 
     }
 
-
-
-    //TODO 
+    
     public function getEventMeshList():array
     {
-
         $curlCommand =
-            $this->generateFirstPart("GET","/api/v0/services?userOnly=true&page-size=100&page-number=0");
+            $this->generateFirstPart("GET","/api/v0/meshManager/eventMeshes");
 
-        //echo "$curlCommand";
-        //echo "";
+        $this->logAsDebug("CURL COMMAND",$curlCommand);
         $shellOutput = shell_exec($curlCommand);
-        //echo "\n\n\n".$shellOutput."\n\n\n";
+        $this->logAsDebug("CURL OUTPUT",$shellOutput);
 
         return json_decode($shellOutput, true)['data'];
     }
 
     /**
-     * get the service associated to this configuration (so that sevices deletion, mesh is only done to the one listed in this configuration and nothing else)
+     * get the service associated to this configuration (so that Mesh deletion, mesh is only done to the one listed in this configuration and nothing else)
      */
-    //TODO
-    public function getMyEventMeshList():array
+    public function getMyEventMesh():?array
     {
-        $serviceList = $this->getEventMeshList();
+        $meshList = $this->getEventMeshList();
 
-        $myServiceNames = [];
 
-        foreach ($this->servicesConfig->services as $service)
+        foreach($meshList as $mesh)
         {
-            $myServiceNames[]=$service->name;
+            if($mesh['name']==$this->servicesConfig->objectNamePrefix.$this->servicesConfig->eventMeshName)
+                return $mesh;
         }
-
-        $myServices = [];
-        foreach($serviceList as $service)
-        {
-            if(in_array($service['name'], $myServiceNames))
-                $myServices[$service['name']]=$service;
-        }
-
-        return $myServices;
+        echo "
+######################################################################################
+#                                                                                    
+#        MESH NOT FOUND ('".$this->servicesConfig->objectNamePrefix.$this->servicesConfig->eventMeshName."')                 
+#                                                                                    
+######################################################################################
+";
+        return null;
     }
 
 
 
-
-//TODO
-    public function deleteEventMesh(string $serviceId):void
+    public function deleteEventMesh():void
     {
+        $mesh = $this->getMyEventMesh();
+
         $curlCommand =
-            $this->generateFirstPart("DELETE","/api/v0/services/".$serviceId);
+            $this->generateFirstPart("DELETE","/api/v0/meshManager/eventMeshes/".$mesh['id']);
 
-        echo "$curlCommand";
-        echo "";
+        $this->logAsDebug("CURL COMMAND",$curlCommand);
         $shellOutput = shell_exec($curlCommand);
-        echo "\n\n\n".$shellOutput."\n\n\n";
+        $this->logAsDebug("CURL OUTPUT",$shellOutput);
     }
 
+
+
+    public function waitForMeshCreation():void
+    {
+        echo "
+######################################################################################
+#                                                                                    #
+#         WAITING FOR AN INITIAL ".$this->servicesConfig->initialWaitForMeshCreation." SECONDS FOR MESH CREATION TO COMPLETE            #
+#                                                                                    #
+######################################################################################
+";
+        sleep($this->servicesConfig->initialWaitForMeshCreation);
+        $numberOfRetry=0;
+        do
+        {
+            $myMesh = $this->getMyEventMesh();
+            if($myMesh == null)
+            {
+                return;
+            }
+
+            if($myMesh['state']==$this->MESH_CREATION_COMPLETED)
+            {
+                return;
+            }
+            else if($myMesh['state']==$this->MESH_CREATION_FAILED)
+            {
+                echo "
+######################################################################################
+#                                                                                    #
+#          Mesh creation >>>>FAILED<<<<                                              #
+#                                                                                    #
+######################################################################################
+";
+                print_r($myMesh);
+                exit(1);
+            }
+
+            echo "
+######################################################################################
+#                                                                                    #
+#    Mesh creation is still in progress, sleeping from 10 more seconds               #
+#                                                                                    #
+######################################################################################
+";
+            $numberOfRetry++;
+            sleep(10);
+
+        }
+        while($numberOfRetry<12);
+    }
+
+
+
+    public function waitForMeshDeletion():void
+    {
+        echo "
+######################################################################################
+#                                                                                    #
+#         WAITING FOR AN INITIAL ".$this->servicesConfig->initialWaitForMeshDeletion." SECONDS FOR MESH DELETION TO COMPLETE            #
+#                                                                                    #
+######################################################################################
+";
+        sleep($this->servicesConfig->initialWaitForMeshDeletion);
+        $numberOfRetry=0;
+        do
+        {
+            $myMesh = $this->getMyEventMesh();
+            if($myMesh == null)
+            {
+
+                echo "
+######################################################################################
+#                                                                                    #
+#          MESH DELETION COMPLETED                                                   #
+#                                                                                    #
+######################################################################################
+";
+                return;
+            }
+
+
+            echo "
+######################################################################################
+#                                                                                    #
+#    Mesh deletion is still in progress, sleeping from 10 more seconds               #
+#                                                                                    #
+######################################################################################
+";
+            $numberOfRetry++;
+            sleep(10);
+
+        }
+        while($numberOfRetry<12);
+    }
 }

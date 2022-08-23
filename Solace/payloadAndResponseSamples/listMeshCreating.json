@@ -1,0 +1,22 @@
+{
+  "data" : [ {
+    "id" : "w03fn6swawj",
+    "name" : "testmesh3",
+    "orgId" : "solaceevangelists",
+    "createdAt" : 1661247758036,
+    "updatedAt" : 0,
+    "clusters" : [ ],
+    "state" : "creating",
+    "type" : "eventMesh"
+  } ],
+  "meta" : {
+    "currentTime" : 1661247766789,
+    "pages" : {
+      "next-page" : null,
+      "total-pages" : 1
+    },
+    "pageNumber" : 0,
+    "count" : 1,
+    "pageSize" : 20
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "data" : [ {
+    "id" : "g2dalt7z4qy",
+    "name" : "testmesh 2",
+    "orgId" : "solaceevangelists",
+    "createdAt" : 1661247521923,
+    "updatedAt" : 0,
+    "clusters" : [ ],
+    "state" : "failed",
+    "type" : "eventMesh"
+  } ],
+  "meta" : {
+    "currentTime" : 1661247533156,
+    "pages" : {
+      "next-page" : null,
+      "total-pages" : 1
+    },
+    "pageNumber" : 0,
+    "count" : 1,
+    "pageSize" : 20
+  }
+}

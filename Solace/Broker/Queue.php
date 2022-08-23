@@ -14,6 +14,7 @@ class Queue extends Config
     public bool   $ingressEnabled   ;
     public string $permission       ;
 
+    /** @noinspection PhpMissingParentConstructorInspection */
     #[Pure] public function __construct(Config $config,
                                         string $queueName        = "queue",
                                         string $accessType       = "exclusive",
@@ -49,10 +50,9 @@ class Queue extends Config
   \"queueName\": \"".$this->queueName."\"
 }'
 ";
-        echo "$curlCommand";
-        echo "";
+        $this->logAsDebug("CURL COMMAND",$curlCommand);
         $shellOutput = shell_exec($curlCommand);
-        //echo $shellOutput."\n";
+        $this->logAsDebug("CURL OUTPUT",$shellOutput);
 
         return $this;
     }
@@ -75,12 +75,10 @@ class Queue extends Config
   \"subscriptionTopic\": \"".$oneSubscription."\"
 }'
 ";
-            echo "$curlCommand";
-            echo "";
+            $this->logAsDebug("CURL COMMAND",$curlCommand);
             $shellOutput = shell_exec($curlCommand);
-            echo $shellOutput."\n";
-
-            return $this;
+            $this->logAsDebug("CURL OUTPUT",$shellOutput);
         }
+        return $this;
     }
 }

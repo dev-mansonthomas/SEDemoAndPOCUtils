@@ -22,11 +22,35 @@ class Service
     function generateFirstPart($method, $path):string
     {
         return "
-curl --location --request ".$method." '".$this->servicesConfig->cloudAPIURL.$path."' \\
+curl -s --location --request ".$method." '".$this->servicesConfig->cloudAPIURL.$path."' \\
 --header 'Content-Type: application/json'                                            \\
 --header 'Accept: application/json'                                                  \\
 --header 'Authorization: Bearer ".$this->servicesConfig->cloudAPIToken."'            \\
 ";
+    }
+
+    function logAsDebug($subject, $content):void
+    {
+        if($this->servicesConfig->debug)
+        {
+
+
+            printf(  "
+######################################################################################
+# >>>DEBUG<<< START >>>  %-37s <<< START >>>DEBUG<<< #
+######################################################################################
+", $subject);
+
+            echo $content;
+            
+            printf(  "
+######################################################################################
+# >>>DEBUG<<< END   >>>  %-37s <<<   END >>>DEBUG<<< #
+######################################################################################
+", $subject);
+
+        }
+
     }
 
     public function createService(ServiceConfig $serviceConfig):void
@@ -36,7 +60,7 @@ curl --location --request ".$method." '".$this->servicesConfig->cloudAPIURL.$pat
             $this->generateFirstPart("POST","/api/v0/services").
             "--data-raw '{
   \"type\": \"service\",
-  \"name\": \"".$serviceConfig->name."\",
+  \"name\": \"".$this->servicesConfig->objectNamePrefix.$serviceConfig->name."\",
   \"serviceTypeId\": \"".$serviceConfig->type."\",
   \"serviceClassId\": \"".$serviceConfig->class."\",
   \"adminState\": \"start\",
@@ -53,30 +77,29 @@ curl --location --request ".$method." '".$this->servicesConfig->cloudAPIURL.$pat
       \"accessType\": \"public\",
       \"type\": \"LoadBalancer\",
       \"ports\": {
-        \"serviceSmfPlainTextListenPort\": 0,
-        \"serviceSmfCompressedListenPort\": 0,
+        \"serviceSmfPlainTextListenPort\": 55555,
+        \"serviceSmfCompressedListenPort\": 55003,
         \"serviceSmfTlsListenPort\": 55443,
-        \"serviceWebPlainTextListenPort\": 0,
+        \"serviceWebPlainTextListenPort\": 80,
         \"serviceWebTlsListenPort\": 443,
-        \"serviceAmqpPlainTextListenPort\": 0,
+        \"serviceAmqpPlainTextListenPort\": 5672,
         \"serviceAmqpTlsListenPort\": 5671,
-        \"serviceMqttPlainTextListenPort\": 0,
-        \"serviceMqttWebSocketListenPort\": 0,
+        \"serviceMqttPlainTextListenPort\": 1883,
+        \"serviceMqttWebSocketListenPort\": 8000,
         \"serviceMqttTlsListenPort\": 8883,
         \"serviceMqttTlsWebSocketListenPort\": 8443,
-        \"serviceRestIncomingPlainTextListenPort\": 0,
+        \"serviceRestIncomingPlainTextListenPort\": 9000,
         \"serviceRestIncomingTlsListenPort\": 9443,
         \"serviceManagementTlsListenPort\": 943,
-        \"managementSshTlsListenPort\": 0
+        \"managementSshTlsListenPort\": 22
       }
     }
   ]
 }'
 ";
-        echo "$curlCommand";
-        echo "";
+        $this->logAsDebug("CURL COMMAND",$curlCommand);
         $shellOutput = shell_exec($curlCommand);
-        echo "\n\n\n".$shellOutput."\n\n\n";
+        $this->logAsDebug("CURL OUTPUT",$shellOutput);
 
     }
 
@@ -96,13 +119,33 @@ curl --location --request ".$method." '".$this->servicesConfig->cloudAPIURL.$pat
         $curlCommand =
             $this->generateFirstPart("GET","/api/v0/services?userOnly=true&page-size=100&page-number=0");
 
-        //echo "$curlCommand";
-        //echo "";
+        $this->logAsDebug("CURL COMMAND",$curlCommand);
         $shellOutput = shell_exec($curlCommand);
-        //echo "\n\n\n".$shellOutput."\n\n\n";
+        $this->logAsDebug("CURL OUTPUT",$shellOutput);
+
+
 
         return json_decode($shellOutput, true)['data'];
     }
+
+
+    public function getServiceDetails(string $serviceId):array
+    {
+
+        $curlCommand =
+            $this->generateFirstPart("GET","/api/v0/services/".$serviceId."?connectionDetails=true");
+
+        $this->logAsDebug("CURL COMMAND",$curlCommand);
+        $shellOutput = shell_exec($curlCommand);
+        $this->logAsDebug("CURL OUTPUT",$shellOutput);
+
+
+
+        return json_decode($shellOutput, true)['data'];
+    }
+
+
+
 
     /**
      * get the service associated to this configuration (so that sevices deletion, mesh is only done to the one listed in this configuration and nothing else)
@@ -115,7 +158,7 @@ curl --location --request ".$method." '".$this->servicesConfig->cloudAPIURL.$pat
 
         foreach ($this->servicesConfig->services as $service)
         {
-            $myServiceNames[]=$service->name;
+            $myServiceNames[]=$this->servicesConfig->objectNamePrefix.$service->name;
         }
 
         $myServices = [];
@@ -194,10 +237,31 @@ curl --location --request ".$method." '".$this->servicesConfig->cloudAPIURL.$pat
         $curlCommand =
             $this->generateFirstPart("DELETE","/api/v0/services/".$serviceId);
 
-        echo "$curlCommand";
-        echo "";
+        $this->logAsDebug("CURL COMMAND",$curlCommand);
         $shellOutput = shell_exec($curlCommand);
-        echo "\n\n\n".$shellOutput."\n\n\n";
+        $this->logAsDebug("CURL OUTPUT",$shellOutput);
+    }
+
+    public function deleteMyService():void
+    {
+        $myServices = $this->getMyServiceList();
+        foreach($myServices as $oneService)
+        {
+            $this->deleteService($oneService['serviceId']);
+        }
+    }
+
+
+    public function getDataCenterList():array
+    {
+        $curlCommand =
+            $this->generateFirstPart("GET","/api/v0/datacenters");
+
+        $this->logAsDebug("CURL COMMAND",$curlCommand);
+        $shellOutput = shell_exec($curlCommand);
+        $this->logAsDebug("CURL OUTPUT",$shellOutput);
+
+        return json_decode($shellOutput, true)['data'];
     }
 
 }
