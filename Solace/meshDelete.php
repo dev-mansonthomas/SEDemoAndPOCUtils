@@ -20,4 +20,6 @@ $mesh = new Mesh($servicesConfig, new Service($servicesConfig));
 
 $mesh->deleteMyEventMesh();
 
+//$mesh->deleteEventMesh('xauocpd9yw2');
+
 echo "end of Mesh Script";

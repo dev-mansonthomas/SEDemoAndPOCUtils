@@ -13,8 +13,8 @@ require_once "Service/Service.php";
 require_once "Service/ServiceConfig.php";
 require_once "Service/ServicesConfig.php";
 
-require_once "Solace/Broker/Config.php";
-require_once "Solace/Broker/Queue.php";
+require_once "Broker/Config.php";
+require_once "Broker/Queue.php";
 
 require_once "configDemoEnv.php";
 
@@ -30,13 +30,32 @@ $service     = new Service($servicesConfig);
 $myServices = $service->getMyServiceList();
 foreach ($myServices as $oneService)
 {
-    $oneServiceDetails = etails($oneService['serviceId']);
-    print_r($oneServiceDetails);
+    $oneServiceDetails = $service->getServiceDetails($oneService['serviceId']);
+    //print_r($oneServiceDetails);
+
+    $AdminURL  = $AdminUser = $AdminPwd = $AdminVPN = "";
+
+    foreach ($oneServiceDetails['managementProtocols'] as $oneManagementProtocol)
+    {
+        if($oneManagementProtocol['name'] == "SolAdmin" )
+        {
+            $AdminURL  = $oneManagementProtocol['endPoints'][0]['uris'][0];
+            $AdminUser = $oneManagementProtocol['username'];
+            $AdminPwd  = $oneManagementProtocol['password'];
+            $AdminVPN  = $oneServiceDetails['msgVpnName'];
+            break;
+        }
+    }
 
     /*
-    $config = new Config("https://mr-5cni9ouxlxj.messaging.solace.cloud:943", "essilor-admin", "xxxxxxxxxxx", "essilor");
-//$config = new Config("http://localhost:8080", "admin", "admin", "essilor");
+    echo "AdminURL=$AdminURL\n";
+    echo "AdminUser=$AdminUser\n";
+    echo "AdminPwd=$AdminPwd\n";
+    echo "AdminVPN=$AdminVPN\n";
+    */
 
+
+    $config = new Config($AdminURL, $AdminUser, $AdminPwd, $AdminVPN, "/SEMP/v2/config", $servicesConfig->debug);
 
     for($i=0;$i<10;$i++)
     {
@@ -44,5 +63,5 @@ foreach ($myServices as $oneService)
             ->createQueue()
             ->addSubscription("topic/0$i");
     }
-    */
+
 }
