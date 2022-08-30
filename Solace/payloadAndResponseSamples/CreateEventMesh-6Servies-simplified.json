@@ -1,0 +1,199 @@
+{
+  \"eventMeshName\": \"$MeshName\",
+  \"services\": [
+    \"$A\",
+    \"$B\",
+    \"$C\",
+    \"$D\",
+    \"$E\",
+    \"$F\"
+  ],
+  \"links\": [
+    {
+      \"serviceId\": \"$A\",
+      \"serviceName\": \"$AName\",
+      \"links\": [
+        {
+          \"initiatorServiceId\": \"$B\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$C\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$D\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$E\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$F\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        }
+      ]
+    },
+    {
+      \"serviceId\": \"$B\",
+      \"serviceName\": \"$BName\",
+      \"links\": [
+        {
+          \"initiatorServiceId\": \"$B\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$C\",
+          \"remoteServiceId\": \"$B\",
+          \"remoteEndpointId\": \"$RemoteB\"
+        },
+        {
+          \"initiatorServiceId\": \"$D\",
+          \"remoteServiceId\": \"$B\",
+          \"remoteEndpointId\": \"$RemoteB\"
+        },
+        {
+          \"initiatorServiceId\": \"$E\",
+          \"remoteServiceId\": \"$B\",
+          \"remoteEndpointId\": \"$RemoteB\"
+        },
+        {
+          \"initiatorServiceId\": \"$F\",
+          \"remoteServiceId\": \"$B\",
+          \"remoteEndpointId\": \"$RemoteB\"
+        }
+      ]
+    },
+    {
+      \"serviceId\": \"$C\",
+      \"serviceName\": \"$CName\",
+      \"links\": [
+        {
+          \"initiatorServiceId\": \"$C\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$C\",
+          \"remoteServiceId\": \"$B\",
+          \"remoteEndpointId\": \"$RemoteB\"
+        },
+        {
+          \"initiatorServiceId\": \"$D\",
+          \"remoteServiceId\": \"$C\",
+          \"remoteEndpointId\": \"$RemoteC\"
+        },
+        {
+          \"initiatorServiceId\": \"$E\",
+          \"remoteServiceId\": \"$C\",
+          \"remoteEndpointId\": \"$RemoteC\"
+        },
+        {
+          \"initiatorServiceId\": \"$F\",
+          \"remoteServiceId\": \"$C\",
+          \"remoteEndpointId\": \"$RemoteC\"
+        }
+      ]
+    },
+    {
+      \"serviceId\": \"$D\",
+      \"serviceName\": \"$DName\",
+      \"links\": [
+        {
+          \"initiatorServiceId\": \"$D\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$D\",
+          \"remoteServiceId\": \"$B\",
+          \"remoteEndpointId\": \"$RemoteB\"
+        },
+        {
+          \"initiatorServiceId\": \"$D\",
+          \"remoteServiceId\": \"$C\",
+          \"remoteEndpointId\": \"$RemoteC\"
+        },
+        {
+          \"initiatorServiceId\": \"$E\",
+          \"remoteServiceId\": \"$D\",
+          \"remoteEndpointId\": \"$RemoteD\"
+        },
+        {
+          \"initiatorServiceId\": \"$F\",
+          \"remoteServiceId\": \"$D\",
+          \"remoteEndpointId\": \"$RemoteD\"
+        }
+      ]
+    },
+    {
+      \"serviceId\": \"$E\",
+      \"serviceName\": \"$EName\",
+      \"links\": [
+        {
+          \"initiatorServiceId\": \"$E\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$E\",
+          \"remoteServiceId\": \"$B\",
+          \"remoteEndpointId\": \"$RemoteB\"
+        },
+        {
+          \"initiatorServiceId\": \"$E\",
+          \"remoteServiceId\": \"$C\",
+          \"remoteEndpointId\": \"$RemoteC\"
+        },
+        {
+          \"initiatorServiceId\": \"$E\",
+          \"remoteServiceId\": \"$D\",
+          \"remoteEndpointId\": \"$RemoteD\"
+        },
+        {
+          \"initiatorServiceId\": \"$F\",
+          \"remoteServiceId\": \"$E\",
+          \"remoteEndpointId\": \"$RemoteE\"
+        }
+      ]
+    },
+    {
+      \"serviceId\": \"$F\",
+      \"serviceName\": \"$FName\",
+      \"links\": [
+        {
+          \"initiatorServiceId\": \"$F\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$F\",
+          \"remoteServiceId\": \"$B\",
+          \"remoteEndpointId\": \"$RemoteB\"
+        },
+        {
+          \"initiatorServiceId\": \"$F\",
+          \"remoteServiceId\": \"$C\",
+          \"remoteEndpointId\": \"$RemoteC\"
+        },
+        {
+          \"initiatorServiceId\": \"$F\",
+          \"remoteServiceId\": \"$D\",
+          \"remoteEndpointId\": \"$RemoteD\"
+        },
+        {
+          \"initiatorServiceId\": \"$F\",
+          \"remoteServiceId\": \"$E\",
+          \"remoteEndpointId\": \"$RemoteE\"
+        }
+      ]
+    }
+  ]
+}

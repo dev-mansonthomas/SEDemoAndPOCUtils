@@ -1,0 +1,58 @@
+{
+  \"eventMeshName\": \"$MeshName\",
+  \"services\": [
+    \"$A\",
+    \"$B\",
+    \"$C\"
+  ],
+  \"links\": [
+    {
+      \"serviceId\": \"$A\",
+      \"serviceName\": \"$AName\",
+      \"links\": [
+        {
+          \"initiatorServiceId\": \"$B\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$C\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        }
+      ]
+    },
+    {
+      \"serviceId\": \"$B\",
+      \"serviceName\": \"$BName\",
+      \"links\": [
+        {
+          \"initiatorServiceId\": \"$B\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$C\",
+          \"remoteServiceId\": \"$B\",
+          \"remoteEndpointId\": \"$RemoteB\"
+        }
+      ]
+    },
+    {
+      \"serviceId\": \"$C\",
+      \"serviceName\": \"$CName\",
+      \"links\": [
+        {
+          \"initiatorServiceId\": \"$C\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$C\",
+          \"remoteServiceId\": \"$B\",
+          \"remoteEndpointId\": \"$RemoteB\"
+        }
+      ]
+    }
+  ]
+}

@@ -17,9 +17,7 @@ require_once "configDemoEnv.php";
 
 /** @var ServicesConfig $servicesConfig */
 $mesh = new Mesh($servicesConfig, new Service($servicesConfig));
-$mesh->createMesh();
-print_r($mesh->getEventMeshList());
-print_r($mesh->getMyEventMesh());
-$mesh->waitForMeshCreation();
+
+$mesh->deleteMyEventMesh();
 
 echo "end of Mesh Script";

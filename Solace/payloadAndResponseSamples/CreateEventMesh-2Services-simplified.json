@@ -1,0 +1,31 @@
+{
+  "eventMeshName": "$MeshName",
+  "services": [
+    "$A",
+    "$B"
+  ],
+  "links": [
+    {
+      "serviceId": "$A",
+      "serviceName": "$AName",
+      "links": [
+        {
+          "initiatorServiceId": "$B",
+          "remoteServiceId": "$A",
+          "remoteEndpointId": "$RemoteA"
+        }
+      ]
+    },
+    {
+      "serviceId": "$B",
+      "serviceName": "$BName",
+      "links": [
+        {
+          "initiatorServiceId": "$B",
+          "remoteServiceId": "$A",
+          "remoteEndpointId": "$RemoteA"
+        }
+      ]
+    }
+  ]
+}

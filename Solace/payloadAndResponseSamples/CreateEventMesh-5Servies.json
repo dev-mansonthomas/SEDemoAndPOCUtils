@@ -1,0 +1,142 @@
+{
+  "eventMeshName": "Event Mesh 5 Services",
+  "services": [
+    "5sxchizowpd",
+    "8qb8vbf96mh",
+    "prnwghr1h50",
+    "vel76tabp0g",
+    "07e55tgr1xt"
+  ],
+  "links": [
+    {
+      "serviceId": "5sxchizowpd",
+      "serviceName": "TM-ACME Rideshare Core",
+      "links": [
+        {
+          "initiatorServiceId": "8qb8vbf96mh",
+          "remoteServiceId": "5sxchizowpd",
+          "remoteEndpointId": "ll7x6zg0777"
+        },
+        {
+          "initiatorServiceId": "prnwghr1h50",
+          "remoteServiceId": "5sxchizowpd",
+          "remoteEndpointId": "ll7x6zg0777"
+        },
+        {
+          "initiatorServiceId": "vel76tabp0g",
+          "remoteServiceId": "5sxchizowpd",
+          "remoteEndpointId": "ll7x6zg0777"
+        },
+        {
+          "initiatorServiceId": "07e55tgr1xt",
+          "remoteServiceId": "5sxchizowpd",
+          "remoteEndpointId": "ll7x6zg0777"
+        }
+      ]
+    },
+    {
+      "serviceId": "8qb8vbf96mh",
+      "serviceName": "TM-ACME Rideshare Partner AF",
+      "links": [
+        {
+          "initiatorServiceId": "8qb8vbf96mh",
+          "remoteServiceId": "5sxchizowpd",
+          "remoteEndpointId": "ll7x6zg0777"
+        },
+        {
+          "initiatorServiceId": "prnwghr1h50",
+          "remoteServiceId": "8qb8vbf96mh",
+          "remoteEndpointId": "ip9k2ap3myn"
+        },
+        {
+          "initiatorServiceId": "vel76tabp0g",
+          "remoteServiceId": "8qb8vbf96mh",
+          "remoteEndpointId": "ip9k2ap3myn"
+        },
+        {
+          "initiatorServiceId": "07e55tgr1xt",
+          "remoteServiceId": "8qb8vbf96mh",
+          "remoteEndpointId": "ip9k2ap3myn"
+        }
+      ]
+    },
+    {
+      "serviceId": "prnwghr1h50",
+      "serviceName": "TM-ACME Rideshare Partner US",
+      "links": [
+        {
+          "initiatorServiceId": "prnwghr1h50",
+          "remoteServiceId": "5sxchizowpd",
+          "remoteEndpointId": "ll7x6zg0777"
+        },
+        {
+          "initiatorServiceId": "prnwghr1h50",
+          "remoteServiceId": "8qb8vbf96mh",
+          "remoteEndpointId": "ip9k2ap3myn"
+        },
+        {
+          "initiatorServiceId": "vel76tabp0g",
+          "remoteServiceId": "prnwghr1h50",
+          "remoteEndpointId": "80ed1wmhxx1"
+        },
+        {
+          "initiatorServiceId": "07e55tgr1xt",
+          "remoteServiceId": "prnwghr1h50",
+          "remoteEndpointId": "80ed1wmhxx1"
+        }
+      ]
+    },
+    {
+      "serviceId": "vel76tabp0g",
+      "serviceName": "TM-ACME Rideshare Partner JP",
+      "links": [
+        {
+          "initiatorServiceId": "vel76tabp0g",
+          "remoteServiceId": "5sxchizowpd",
+          "remoteEndpointId": "ll7x6zg0777"
+        },
+        {
+          "initiatorServiceId": "vel76tabp0g",
+          "remoteServiceId": "8qb8vbf96mh",
+          "remoteEndpointId": "ip9k2ap3myn"
+        },
+        {
+          "initiatorServiceId": "vel76tabp0g",
+          "remoteServiceId": "prnwghr1h50",
+          "remoteEndpointId": "80ed1wmhxx1"
+        },
+        {
+          "initiatorServiceId": "07e55tgr1xt",
+          "remoteServiceId": "vel76tabp0g",
+          "remoteEndpointId": "v689bhb1epr"
+        }
+      ]
+    },
+    {
+      "serviceId": "07e55tgr1xt",
+      "serviceName": "RenautlCF",
+      "links": [
+        {
+          "initiatorServiceId": "07e55tgr1xt",
+          "remoteServiceId": "5sxchizowpd",
+          "remoteEndpointId": "ll7x6zg0777"
+        },
+        {
+          "initiatorServiceId": "07e55tgr1xt",
+          "remoteServiceId": "8qb8vbf96mh",
+          "remoteEndpointId": "ip9k2ap3myn"
+        },
+        {
+          "initiatorServiceId": "07e55tgr1xt",
+          "remoteServiceId": "prnwghr1h50",
+          "remoteEndpointId": "80ed1wmhxx1"
+        },
+        {
+          "initiatorServiceId": "07e55tgr1xt",
+          "remoteServiceId": "vel76tabp0g",
+          "remoteEndpointId": "v689bhb1epr"
+        }
+      ]
+    }
+  ]
+}

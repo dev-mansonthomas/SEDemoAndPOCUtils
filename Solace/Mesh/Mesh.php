@@ -56,6 +56,28 @@ curl -s --location --request ".$method." '".$this->servicesConfig->cloudAPIURL.$
 
     }
 
+
+    public function createMesh():void
+    {
+        $myServices = $this->service->getMyServiceList();
+
+        $serviceCount = count($this->servicesConfig->services);
+        $functionName = "create".$serviceCount."ServicesEventMeshPayload";
+        $payload = $this->$functionName($myServices);
+
+        $curlCommand =
+            $this->generateFirstPart("POST","/api/v0/meshManager/eventMeshes").
+            "--data-raw '$payload'
+";
+        $this->logAsDebug("CURL COMMAND",$curlCommand);
+        $shellOutput = shell_exec($curlCommand);
+        $this->logAsDebug("CURL OUTPUT",$shellOutput);
+
+
+    }
+
+
+    /*
     public function createMesh():void
     {
 
@@ -74,7 +96,7 @@ curl -s --location --request ".$method." '".$this->servicesConfig->cloudAPIURL.$
         {
             $currentService = $oneService['serviceId'];
             $serviceListString .= "\n    \"".$currentService."\",";
-            /** no need to add objectName prefix here, has serviceName are retrieved from Solace Cloud API*/
+            /** no need to add objectName prefix here, has serviceName are retrieved from Solace Cloud API* /
             $serviceLinksString.="
     {
       \"serviceId\": \"".$oneService['serviceId']."\",
@@ -121,6 +143,7 @@ curl -s --location --request ".$method." '".$this->servicesConfig->cloudAPIURL.$
         $this->logAsDebug("CURL OUTPUT",$shellOutput);
 
     }
+*/
 
     
     public function getEventMeshList():array
@@ -160,12 +183,16 @@ curl -s --location --request ".$method." '".$this->servicesConfig->cloudAPIURL.$
 
 
 
-    public function deleteEventMesh():void
+    public function deleteMyEventMesh():void
     {
         $mesh = $this->getMyEventMesh();
+        $this->deleteEventMesh($mesh['id']);
+    }
 
+    public function deleteEventMesh(string $meshId):void
+    {
         $curlCommand =
-            $this->generateFirstPart("DELETE","/api/v0/meshManager/eventMeshes/".$mesh['id']);
+            $this->generateFirstPart("DELETE","/api/v0/meshManager/eventMeshes/".$meshId);
 
         $this->logAsDebug("CURL COMMAND",$curlCommand);
         $shellOutput = shell_exec($curlCommand);
@@ -266,5 +293,666 @@ curl -s --location --request ".$method." '".$this->servicesConfig->cloudAPIURL.$
 
         }
         while($numberOfRetry<12);
+    }
+    
+    /**
+     * @param ServiceConfig[] $myServices  List of services, fetched by $service->getMyServices(), in the case of 2 services
+     */
+    private function create2ServicesEventMeshPayload(array $myServices)
+    {
+        $MeshName = $this->servicesConfig->objectNamePrefix.$this->servicesConfig->eventMeshName;
+
+        $myServicesNames = array_keys($myServices);
+        $countServices   = count($myServices);
+
+        $variableServiceName=["A","B","C","D","E","F"];
+        
+        for($i=0;$i<$countServices;$i++)
+        {
+            $serviceIdVariable        = $variableServiceName[$i];
+            $serviceNameVariable      = $variableServiceName[$i]."Name";
+            $serviceRemoteNameVariable= "Remote".$variableServiceName[$i];
+
+            $$serviceIdVariable         = $myServices[$myServicesNames[$i]]['serviceId'];
+            $$serviceNameVariable       = $myServices[$myServicesNames[$i]]['name'     ];
+            $$serviceRemoteNameVariable = $myServices[$myServicesNames[$i]]['serviceConnectionEndpoints'][0]['serviceConnectionEndpointId'];
+        }
+
+        return "
+{
+  \"eventMeshName\": \"$MeshName\",
+  \"services\": [
+    \"$A\",
+    \"$B\"
+  ],
+  \"links\": [
+    {
+      \"serviceId\": \"$A\",
+      \"serviceName\": \"$AName\",
+      \"links\": [
+        {
+          \"initiatorServiceId\": \"$B\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        }
+      ]
+    },
+    {
+      \"serviceId\": \"$B\",
+      \"serviceName\": \"$BName\",
+      \"links\": [
+        {
+          \"initiatorServiceId\": \"$B\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        }
+      ]
+    }
+  ]
+}
+";
+        
+    }
+    /**
+     * @param ServiceConfig[] $myServices  List of services, fetched by $service->getMyServices(), in the case of 3 services
+     */
+    private function create3ServicesEventMeshPayload(array $myServices)
+    {
+        $MeshName = $this->servicesConfig->objectNamePrefix.$this->servicesConfig->eventMeshName;
+
+        $myServicesNames = array_keys($myServices);
+        $countServices   = count($myServices);
+
+        $variableServiceName=["A","B","C","D","E","F"];
+
+        for($i=0;$i<$countServices;$i++)
+        {
+            $serviceIdVariable        = $variableServiceName[$i];
+            $serviceNameVariable      = $variableServiceName[$i]."Name";
+            $serviceRemoteNameVariable= "Remote".$variableServiceName[$i];
+
+            $$serviceIdVariable         = $myServices[$myServicesNames[$i]]['serviceId'];
+            $$serviceNameVariable       = $myServices[$myServicesNames[$i]]['name'     ];
+            $$serviceRemoteNameVariable = $myServices[$myServicesNames[$i]]['serviceConnectionEndpoints'][0]['serviceConnectionEndpointId'];
+        }
+
+        return "
+{
+  \"eventMeshName\": \"$MeshName\",
+  \"services\": [
+    \"$A\",
+    \"$B\",
+    \"$C\"
+  ],
+  \"links\": [
+    {
+      \"serviceId\": \"$A\",
+      \"serviceName\": \"$AName\",
+      \"links\": [
+        {
+          \"initiatorServiceId\": \"$B\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$C\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        }
+      ]
+    },
+    {
+      \"serviceId\": \"$B\",
+      \"serviceName\": \"$BName\",
+      \"links\": [
+        {
+          \"initiatorServiceId\": \"$B\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$C\",
+          \"remoteServiceId\": \"$B\",
+          \"remoteEndpointId\": \"$RemoteB\"
+        }
+      ]
+    },
+    {
+      \"serviceId\": \"$C\",
+      \"serviceName\": \"$CName\",
+      \"links\": [
+        {
+          \"initiatorServiceId\": \"$C\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$C\",
+          \"remoteServiceId\": \"$B\",
+          \"remoteEndpointId\": \"$RemoteB\"
+        }
+      ]
+    }
+  ]
+}
+";
+
+    }
+    /**
+     * @param ServiceConfig[] $myServices  List of services, fetched by $service->getMyServices(), in the case of 4 services
+     */
+    private function create4ServicesEventMeshPayload(array $myServices)
+    {
+        $MeshName = $this->servicesConfig->objectNamePrefix.$this->servicesConfig->eventMeshName;
+
+        $myServicesNames = array_keys($myServices);
+        $countServices   = count($myServices);
+
+        $variableServiceName=["A","B","C","D","E","F"];
+
+        for($i=0;$i<$countServices;$i++)
+        {
+            $serviceIdVariable        = $variableServiceName[$i];
+            $serviceNameVariable      = $variableServiceName[$i]."Name";
+            $serviceRemoteNameVariable= "Remote".$variableServiceName[$i];
+
+            $$serviceIdVariable         = $myServices[$myServicesNames[$i]]['serviceId'];
+            $$serviceNameVariable       = $myServices[$myServicesNames[$i]]['name'     ];
+            $$serviceRemoteNameVariable = $myServices[$myServicesNames[$i]]['serviceConnectionEndpoints'][0]['serviceConnectionEndpointId'];
+        }
+
+        return "
+{
+  \"eventMeshName\": \"$MeshName\",
+  \"services\": [
+    \"$A\",
+    \"$B\",
+    \"$C\",
+    \"$D\"
+  ],
+  \"links\": [
+    {
+      \"serviceId\": \"$A\",
+      \"serviceName\": \"$AName\",
+      \"links\": [
+        {
+          \"initiatorServiceId\": \"$B\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$C\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$D\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"RemoteA\"
+        }
+      ]
+    },
+    {
+      \"serviceId\": \"$B\",
+      \"serviceName\": \"$BName\",
+      \"links\": [
+        {
+          \"initiatorServiceId\": \"$B\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$C\",
+          \"remoteServiceId\": \"$B\",
+          \"remoteEndpointId\": \"RemoteB\"
+        },
+        {
+          \"initiatorServiceId\": \"$D\",
+          \"remoteServiceId\": \"$B\",
+          \"remoteEndpointId\": \"RemoteB\"
+        }
+      ]
+    },
+    {
+      \"serviceId\": \"$C\",
+      \"serviceName\": \"$CName\",
+      \"links\": [
+        {
+          \"initiatorServiceId\": \"$C\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$C\",
+          \"remoteServiceId\": \"$B\",
+          \"remoteEndpointId\": \"RemoteB\"
+        },
+        {
+          \"initiatorServiceId\": \"$D\",
+          \"remoteServiceId\": \"$C\",
+          \"remoteEndpointId\": \"RemoteC\"
+        }
+      ]
+    },
+    {
+      \"serviceId\": \"$D\",
+      \"serviceName\": \"$DName\",
+      \"links\": [
+        {
+          \"initiatorServiceId\": \"$D\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$D\",
+          \"remoteServiceId\": \"$B\",
+          \"remoteEndpointId\": \"RemoteB\"
+        },
+        {
+          \"initiatorServiceId\": \"$D\",
+          \"remoteServiceId\": \"$C\",
+          \"remoteEndpointId\": \"RemoteC\"
+        }
+      ]
+    }
+  ]
+}
+";
+
+    }
+    /**
+     * @param ServiceConfig[] $myServices  List of services, fetched by $service->getMyServices(), in the case of 5 services
+     */
+    private function create5ServicesEventMeshPayload(array $myServices)
+    {
+        $MeshName = $this->servicesConfig->objectNamePrefix.$this->servicesConfig->eventMeshName;
+
+        $myServicesNames = array_keys($myServices);
+        $countServices   = count($myServices);
+
+        $variableServiceName=["A","B","C","D","E","F"];
+
+        for($i=0;$i<$countServices;$i++)
+        {
+            $serviceIdVariable        = $variableServiceName[$i];
+            $serviceNameVariable      = $variableServiceName[$i]."Name";
+            $serviceRemoteNameVariable= "Remote".$variableServiceName[$i];
+
+            $$serviceIdVariable         = $myServices[$myServicesNames[$i]]['serviceId'];
+            $$serviceNameVariable       = $myServices[$myServicesNames[$i]]['name'     ];
+            $$serviceRemoteNameVariable = $myServices[$myServicesNames[$i]]['serviceConnectionEndpoints'][0]['serviceConnectionEndpointId'];
+        }
+
+        return "
+{
+  \"eventMeshName\": \"$MeshName\",
+  \"services\": [
+    \"$A\",
+    \"$B\",
+    \"$C\",
+    \"$D\",
+    \"$E\"
+  ],
+  \"links\": [
+    {
+      \"serviceId\": \"$A\",
+      \"serviceName\": \"$AName\",
+      \"links\": [
+        {
+          \"initiatorServiceId\": \"$B\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$C\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$D\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$E\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        }
+      ]
+    },
+    {
+      \"serviceId\": \"$B\",
+      \"serviceName\": \"$BName\",
+      \"links\": [
+        {
+          \"initiatorServiceId\": \"$B\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$C\",
+          \"remoteServiceId\": \"$B\",
+          \"remoteEndpointId\": \"$RemoteB\"
+        },
+        {
+          \"initiatorServiceId\": \"$D\",
+          \"remoteServiceId\": \"$B\",
+          \"remoteEndpointId\": \"$RemoteB\"
+        },
+        {
+          \"initiatorServiceId\": \"$E\",
+          \"remoteServiceId\": \"$B\",
+          \"remoteEndpointId\": \"$RemoteB\"
+        }
+      ]
+    },
+    {
+      \"serviceId\": \"$C\",
+      \"serviceName\": \"$CName\",
+      \"links\": [
+        {
+          \"initiatorServiceId\": \"$C\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$C\",
+          \"remoteServiceId\": \"$B\",
+          \"remoteEndpointId\": \"$RemoteB\"
+        },
+        {
+          \"initiatorServiceId\": \"$D\",
+          \"remoteServiceId\": \"$C\",
+          \"remoteEndpointId\": \"$RemoteC\"
+        },
+        {
+          \"initiatorServiceId\": \"$E\",
+          \"remoteServiceId\": \"$C\",
+          \"remoteEndpointId\": \"$RemoteC\"
+        }
+      ]
+    },
+    {
+      \"serviceId\": \"$D\",
+      \"serviceName\": \"$DName\",
+      \"links\": [
+        {
+          \"initiatorServiceId\": \"$D\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$D\",
+          \"remoteServiceId\": \"$B\",
+          \"remoteEndpointId\": \"$RemoteB\"
+        },
+        {
+          \"initiatorServiceId\": \"$D\",
+          \"remoteServiceId\": \"$C\",
+          \"remoteEndpointId\": \"$RemoteC\"
+        },
+        {
+          \"initiatorServiceId\": \"$E\",
+          \"remoteServiceId\": \"$D\",
+          \"remoteEndpointId\": \"$RemoteD\"
+        }
+      ]
+    },
+    {
+      \"serviceId\": \"$E\",
+      \"serviceName\": \"$EName\",
+      \"links\": [
+        {
+          \"initiatorServiceId\": \"$E\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$E\",
+          \"remoteServiceId\": \"$B\",
+          \"remoteEndpointId\": \"$RemoteB\"
+        },
+        {
+          \"initiatorServiceId\": \"$E\",
+          \"remoteServiceId\": \"$C\",
+          \"remoteEndpointId\": \"$RemoteC\"
+        },
+        {
+          \"initiatorServiceId\": \"$E\",
+          \"remoteServiceId\": \"$D\",
+          \"remoteEndpointId\": \"$RemoteD\"
+        }
+      ]
+    }
+  ]
+}
+";
+
+    }
+    /**
+     * @param ServiceConfig[] $myServices  List of services, fetched by $service->getMyServices(), in the case of 6 services
+     */
+    private function create6ServicesEventMeshPayload(array $myServices)
+    {
+        $MeshName = $this->servicesConfig->objectNamePrefix.$this->servicesConfig->eventMeshName;
+
+        $myServicesNames = array_keys($myServices);
+        $countServices   = count($myServices);
+
+        $variableServiceName=["A","B","C","D","E","F"];
+
+        for($i=0;$i<$countServices;$i++)
+        {
+            $serviceIdVariable        = $variableServiceName[$i];
+            $serviceNameVariable      = $variableServiceName[$i]."Name";
+            $serviceRemoteNameVariable= "Remote".$variableServiceName[$i];
+
+            $$serviceIdVariable         = $myServices[$myServicesNames[$i]]['serviceId'];
+            $$serviceNameVariable       = $myServices[$myServicesNames[$i]]['name'     ];
+            $$serviceRemoteNameVariable = $myServices[$myServicesNames[$i]]['serviceConnectionEndpoints'][0]['serviceConnectionEndpointId'];
+        }
+
+        return "
+{
+  \"eventMeshName\": \"$MeshName\",
+  \"services\": [
+    \"$A\",
+    \"$B\",
+    \"$C\",
+    \"$D\",
+    \"$E\",
+    \"$F\"
+  ],
+  \"links\": [
+    {
+      \"serviceId\": \"$A\",
+      \"serviceName\": \"$AName\",
+      \"links\": [
+        {
+          \"initiatorServiceId\": \"$B\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$C\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$D\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$E\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$F\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        }
+      ]
+    },
+    {
+      \"serviceId\": \"$B\",
+      \"serviceName\": \"$BName\",
+      \"links\": [
+        {
+          \"initiatorServiceId\": \"$B\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$C\",
+          \"remoteServiceId\": \"$B\",
+          \"remoteEndpointId\": \"$RemoteB\"
+        },
+        {
+          \"initiatorServiceId\": \"$D\",
+          \"remoteServiceId\": \"$B\",
+          \"remoteEndpointId\": \"$RemoteB\"
+        },
+        {
+          \"initiatorServiceId\": \"$E\",
+          \"remoteServiceId\": \"$B\",
+          \"remoteEndpointId\": \"$RemoteB\"
+        },
+        {
+          \"initiatorServiceId\": \"$F\",
+          \"remoteServiceId\": \"$B\",
+          \"remoteEndpointId\": \"$RemoteB\"
+        }
+      ]
+    },
+    {
+      \"serviceId\": \"$C\",
+      \"serviceName\": \"$CName\",
+      \"links\": [
+        {
+          \"initiatorServiceId\": \"$C\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$C\",
+          \"remoteServiceId\": \"$B\",
+          \"remoteEndpointId\": \"$RemoteB\"
+        },
+        {
+          \"initiatorServiceId\": \"$D\",
+          \"remoteServiceId\": \"$C\",
+          \"remoteEndpointId\": \"$RemoteC\"
+        },
+        {
+          \"initiatorServiceId\": \"$E\",
+          \"remoteServiceId\": \"$C\",
+          \"remoteEndpointId\": \"$RemoteC\"
+        },
+        {
+          \"initiatorServiceId\": \"$F\",
+          \"remoteServiceId\": \"$C\",
+          \"remoteEndpointId\": \"$RemoteC\"
+        }
+      ]
+    },
+    {
+      \"serviceId\": \"$D\",
+      \"serviceName\": \"$DName\",
+      \"links\": [
+        {
+          \"initiatorServiceId\": \"$D\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$D\",
+          \"remoteServiceId\": \"$B\",
+          \"remoteEndpointId\": \"$RemoteB\"
+        },
+        {
+          \"initiatorServiceId\": \"$D\",
+          \"remoteServiceId\": \"$C\",
+          \"remoteEndpointId\": \"$RemoteC\"
+        },
+        {
+          \"initiatorServiceId\": \"$E\",
+          \"remoteServiceId\": \"$D\",
+          \"remoteEndpointId\": \"$RemoteD\"
+        },
+        {
+          \"initiatorServiceId\": \"$F\",
+          \"remoteServiceId\": \"$D\",
+          \"remoteEndpointId\": \"$RemoteD\"
+        }
+      ]
+    },
+    {
+      \"serviceId\": \"$E\",
+      \"serviceName\": \"$EName\",
+      \"links\": [
+        {
+          \"initiatorServiceId\": \"$E\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$E\",
+          \"remoteServiceId\": \"$B\",
+          \"remoteEndpointId\": \"$RemoteB\"
+        },
+        {
+          \"initiatorServiceId\": \"$E\",
+          \"remoteServiceId\": \"$C\",
+          \"remoteEndpointId\": \"$RemoteC\"
+        },
+        {
+          \"initiatorServiceId\": \"$E\",
+          \"remoteServiceId\": \"$D\",
+          \"remoteEndpointId\": \"$RemoteD\"
+        },
+        {
+          \"initiatorServiceId\": \"$F\",
+          \"remoteServiceId\": \"$E\",
+          \"remoteEndpointId\": \"$RemoteE\"
+        }
+      ]
+    },
+    {
+      \"serviceId\": \"$F\",
+      \"serviceName\": \"$FName\",
+      \"links\": [
+        {
+          \"initiatorServiceId\": \"$F\",
+          \"remoteServiceId\": \"$A\",
+          \"remoteEndpointId\": \"$RemoteA\"
+        },
+        {
+          \"initiatorServiceId\": \"$F\",
+          \"remoteServiceId\": \"$B\",
+          \"remoteEndpointId\": \"$RemoteB\"
+        },
+        {
+          \"initiatorServiceId\": \"$F\",
+          \"remoteServiceId\": \"$C\",
+          \"remoteEndpointId\": \"$RemoteC\"
+        },
+        {
+          \"initiatorServiceId\": \"$F\",
+          \"remoteServiceId\": \"$D\",
+          \"remoteEndpointId\": \"$RemoteD\"
+        },
+        {
+          \"initiatorServiceId\": \"$F\",
+          \"remoteServiceId\": \"$E\",
+          \"remoteEndpointId\": \"$RemoteE\"
+        }
+      ]
+    }
+  ]
+}
+";
+
     }
 }

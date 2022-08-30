@@ -1,0 +1,58 @@
+{
+  "eventMeshName": "Event Mesh 3 services",
+  "services": [
+    "5sxchizowpd",
+    "8qb8vbf96mh",
+    "prnwghr1h50"
+  ],
+  "links": [
+    {
+      "serviceId": "5sxchizowpd",
+      "serviceName": "TM-ACME Rideshare Core",
+      "links": [
+        {
+          "initiatorServiceId": "8qb8vbf96mh",
+          "remoteServiceId": "5sxchizowpd",
+          "remoteEndpointId": "ll7x6zg0777"
+        },
+        {
+          "initiatorServiceId": "prnwghr1h50",
+          "remoteServiceId": "5sxchizowpd",
+          "remoteEndpointId": "ll7x6zg0777"
+        }
+      ]
+    },
+    {
+      "serviceId": "8qb8vbf96mh",
+      "serviceName": "TM-ACME Rideshare Partner AF",
+      "links": [
+        {
+          "initiatorServiceId": "8qb8vbf96mh",
+          "remoteServiceId": "5sxchizowpd",
+          "remoteEndpointId": "ll7x6zg0777"
+        },
+        {
+          "initiatorServiceId": "prnwghr1h50",
+          "remoteServiceId": "8qb8vbf96mh",
+          "remoteEndpointId": "ip9k2ap3myn"
+        }
+      ]
+    },
+    {
+      "serviceId": "prnwghr1h50",
+      "serviceName": "TM-ACME Rideshare Partner US",
+      "links": [
+        {
+          "initiatorServiceId": "prnwghr1h50",
+          "remoteServiceId": "5sxchizowpd",
+          "remoteEndpointId": "ll7x6zg0777"
+        },
+        {
+          "initiatorServiceId": "prnwghr1h50",
+          "remoteServiceId": "8qb8vbf96mh",
+          "remoteEndpointId": "ip9k2ap3myn"
+        }
+      ]
+    }
+  ]
+}

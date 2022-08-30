@@ -37,10 +37,13 @@ https://docs.solace.com/Cloud/ght_api_tokens.htm#Create
 Minimum required rights 
 
 === My Services ===
-- Get My Services with Management Credentials
-- Create Services
-- Delete My Services
-- Delete My Service Connection Endpoints
+ - Get My Services with Management Credentials
+ - Create Services
+ - Delete My Services
+
+=== Cloud Services === 
+
+ - Get Datacenters
 
 === Mesh Manager ===
  - Mesh Manager Read
