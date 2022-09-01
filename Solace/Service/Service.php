@@ -144,6 +144,27 @@ curl -s --location --request ".$method." '".$this->servicesConfig->cloudAPIURL.$
         return json_decode($shellOutput, true)['data'];
     }
 
+    public function getServiceAdminDetails(string $serviceId):array
+    {
+        $oneServiceDetails = $this->getServiceDetails($serviceId);
+        //print_r($oneServiceDetails);
+
+        $AdminURL  = $AdminUser = $AdminPwd = $AdminVPN = "";
+
+        foreach ($oneServiceDetails['managementProtocols'] as $oneManagementProtocol)
+        {
+            if($oneManagementProtocol['name'] == "SolAdmin" )
+            {
+                $AdminURL  = $oneManagementProtocol['endPoints' ][0]['uris'][0];
+                $AdminUser = $oneManagementProtocol['username'  ];
+                $AdminPwd  = $oneManagementProtocol['password'  ];
+                $AdminVPN  = $oneServiceDetails    ['msgVpnName'];
+                break;
+            }
+        }
+
+        return ['AdminURL'=>$AdminURL,'AdminUser'=>$AdminUser,'AdminPwd'=>$AdminPwd,'AdminVPN'=>$AdminVPN];
+    }
 
 
 

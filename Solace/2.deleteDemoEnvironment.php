@@ -20,7 +20,7 @@ require_once "configDemoEnv.php";
 $service = new Service($servicesConfig);
 
 $mesh = new Mesh($servicesConfig, $service);
-$mesh->deleteEventMesh();
+$mesh->deleteMyEventMesh();
 $mesh->waitForMeshDeletion();
 
 $service->deleteMyService();

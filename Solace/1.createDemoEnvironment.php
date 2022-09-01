@@ -15,8 +15,8 @@ require_once "Service/Service.php";
 require_once "Service/ServiceConfig.php";
 require_once "Service/ServicesConfig.php";
 
-require_once "Solace/Broker/Config.php";
-require_once "Solace/Broker/Queue.php";
+require_once "Broker/Config.php";
+require_once "Broker/Queue.php";
 
 
 require_once "configDemoEnv.php";

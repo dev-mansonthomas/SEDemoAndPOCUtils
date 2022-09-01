@@ -28,40 +28,23 @@ $service     = new Service($servicesConfig);
 
 
 $myServices = $service->getMyServiceList();
+$numberOfServices = count($myServices);
+
 foreach ($myServices as $oneService)
 {
-    $oneServiceDetails = $service->getServiceDetails($oneService['serviceId']);
-    //print_r($oneServiceDetails);
+    $serviceAdminDetails = $service->getServiceAdminDetails($oneService['serviceId']);
 
-    $AdminURL  = $AdminUser = $AdminPwd = $AdminVPN = "";
+    $config = new Config(   $serviceAdminDetails['AdminURL' ],
+                            $serviceAdminDetails['AdminUser'],
+                            $serviceAdminDetails['$AdminPwd'],
+                            $serviceAdminDetails['$AdminVPN'],
+                            "/SEMP/v2/config"       ,
+                            $servicesConfig->debug          );
 
-    foreach ($oneServiceDetails['managementProtocols'] as $oneManagementProtocol)
+    for($i=0;$i<$numberOfServices;$i++)
     {
-        if($oneManagementProtocol['name'] == "SolAdmin" )
-        {
-            $AdminURL  = $oneManagementProtocol['endPoints'][0]['uris'][0];
-            $AdminUser = $oneManagementProtocol['username'];
-            $AdminPwd  = $oneManagementProtocol['password'];
-            $AdminVPN  = $oneServiceDetails['msgVpnName'];
-            break;
-        }
-    }
-
-    /*
-    echo "AdminURL=$AdminURL\n";
-    echo "AdminUser=$AdminUser\n";
-    echo "AdminPwd=$AdminPwd\n";
-    echo "AdminVPN=$AdminVPN\n";
-    */
-
-
-    $config = new Config($AdminURL, $AdminUser, $AdminPwd, $AdminVPN, "/SEMP/v2/config", $servicesConfig->debug);
-
-    for($i=0;$i<10;$i++)
-    {
-        (new Queue ( $config,"queue_0$i"))
+        (new Queue ( $config,"queue_0$i" ) )
             ->createQueue()
             ->addSubscription("topic/0$i");
     }
-
 }
