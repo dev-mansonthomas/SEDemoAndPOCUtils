@@ -55,10 +55,19 @@ curl -s --location --request ".$method." '".$this->servicesConfig->cloudAPIURL.$
 
     public function createService(ServiceConfig $serviceConfig):void
     {
-        //--header 'Cookie: Session=RrE4kpRYO9gF-djljbx8-R6ieySYAZDkR9cXHDS_WZs' \
-        $curlCommand =
-            $this->generateFirstPart("POST","/api/v0/services").
-            "--data-raw '{
+      $storage = "";
+      if($serviceConfig->storageIsConfigurable)
+      {
+        $storage = "
+\"messagingStorage\": ".$serviceConfig->brokerStorageSize.",
+";
+      }
+
+
+
+      $curlCommand =
+        $this->generateFirstPart("POST","/api/v0/services").
+        "--data-raw '{
   \"type\": \"service\",
   \"name\": \"".$this->servicesConfig->objectNamePrefix.$serviceConfig->name."\",
   \"serviceTypeId\": \"".$serviceConfig->type."\",
@@ -69,7 +78,7 @@ curl -s --location --request ".$method." '".$this->servicesConfig->cloudAPIURL.$
   \"partitionId\": \"default\",
   \"eventBrokerVersion\": \"".$serviceConfig->brokerVersion."\",
   \"msgVpnName\": \"".str_replace(" ", "-", strtolower($serviceConfig->name))."\",
-  \"messagingStorage\": 25,
+  $storage
   \"serviceConnectionEndpoints\": [
     {
       \"name\": \"Public Endpoint\",
@@ -108,6 +117,7 @@ curl -s --location --request ".$method." '".$this->servicesConfig->cloudAPIURL.$
     {
         foreach ($this->servicesConfig->services as $service)
         {
+            $service->storageIsConfigurable = $this->servicesConfig->storageIsConfigurable;
             $this->createService($service);
         }
     }

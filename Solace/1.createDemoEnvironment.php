@@ -32,6 +32,28 @@ $mesh->createMesh();
 $mesh->waitForMeshCreation();
 
 
+$myServices = $service->getMyServiceList();
+$numberOfServices = count($myServices);
+$j=1;
+foreach ($myServices as $oneService)
+{
+    $serviceAdminDetails = $service->getServiceAdminDetails($oneService['serviceId']);
+
+    $config = new Config(   $serviceAdminDetails['AdminURL' ],
+                            $serviceAdminDetails['AdminUser'],
+                            $serviceAdminDetails['AdminPwd' ],
+                            $serviceAdminDetails['AdminVPN' ],
+                            $servicesConfig->debug          );
+
+    for($i=0;$i<$numberOfServices;$i++)
+    {
+        if($i == 0 || $i == $j || $i%$j == 0)
+            (new Queue ( $config,"queue_0$i" ) )
+                ->createQueue()
+                ->addSubscription("topic/0$i");
+    }
+    $j++;
+}
 
 
 //TODO :  broker configuration

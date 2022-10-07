@@ -16,7 +16,7 @@ require_once "configDemoEnv.php";
 /** @var ServicesConfig $servicesConfig */
 
 $service     = new Service($servicesConfig);
-$serviceList = $service->getServiceList();
+$serviceList = $service->getMyServiceList();
 foreach($serviceList as $oneService)
 {
     //print_r($oneService);

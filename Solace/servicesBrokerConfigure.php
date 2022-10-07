@@ -38,7 +38,6 @@ foreach ($myServices as $oneService)
                             $serviceAdminDetails['AdminUser'],
                             $serviceAdminDetails['$AdminPwd'],
                             $serviceAdminDetails['$AdminVPN'],
-                            "/SEMP/v2/config"       ,
                             $servicesConfig->debug          );
 
     for($i=0;$i<$numberOfServices;$i++)

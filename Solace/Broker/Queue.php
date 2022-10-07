@@ -58,7 +58,7 @@ class Queue extends Config
     }
 
 
-    public function addSubscription(string|array $subscription)
+    public function addSubscription(string|array $subscription):Queue
     {
         //--header 'Cookie: Session=RrE4kpRYO9gF-djljbx8-R6ieySYAZDkR9cXHDS_WZs' \
 

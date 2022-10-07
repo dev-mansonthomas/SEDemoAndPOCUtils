@@ -37,7 +37,14 @@ class ServicesConfig
     /**
      * @var int $initialWaitForMeshDeletion in second to wait after the initial API call to delete the Mesh
      */
-    public int    $initialWaitForMeshDeletion=20;
+    public int    $initialWaitForMeshDeletion = 20;
+
+    /**
+     * @var bool   $storageIsConfigurable Setting this option to true, will allow you to specify a storage size for each brokers. However, your Solace Cloud Account (not your token) must be allowed to set the broker storage size.
+     *                                    To check if you can set the broker storage size, go to your solace cloud account, create a service and see if you have a field that allows you to specify the storage size.
+     *                                    If you set this to true and you don't have the appropriate rights, you'll get the following error : "Organization seall is not permitted to configure message storage size"
+     */
+    public bool   $storageIsConfigurable      = false;
 
     /**
      * @var bool $debug if set to true, each CURL command, and its output will be printed to the console.
@@ -54,18 +61,20 @@ class ServicesConfig
      */
     public string $objectNamePrefix;
 
-    public function __construct(string $cloudAPIURL  ,
-                                string $cloudAPIToken,
-                                array  $services     ,
-                                string $eventMeshName,
-                                string $objectNamePrefix = ""   ,
-                                bool   $debug            = false)
+    public function __construct(string $cloudAPIURL                  ,
+                                string $cloudAPIToken                ,
+                                array  $services                     ,
+                                string $eventMeshName                ,
+                                string $objectNamePrefix      = ""   ,
+                                bool   $storageIsConfigurable = false,
+                                bool   $debug                 = false)
     {
-        $this->cloudAPIURL      = $cloudAPIURL     ;
-        $this->cloudAPIToken    = $cloudAPIToken;
-        $this->services         = $services;
-        $this->eventMeshName    = $eventMeshName;
-        $this->objectNamePrefix = $objectNamePrefix;
-        $this->debug            = $debug;
+        $this->cloudAPIURL           = $cloudAPIURL             ;
+        $this->cloudAPIToken         = $cloudAPIToken           ;
+        $this->services              = $services                ;
+        $this->eventMeshName         = $eventMeshName           ;
+        $this->objectNamePrefix      = $objectNamePrefix        ;
+        $this->storageIsConfigurable = $storageIsConfigurable   ;
+        $this->debug                 = $debug                   ;
     }
 }

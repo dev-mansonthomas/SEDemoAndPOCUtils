@@ -3,21 +3,29 @@ namespace Solace\Service;
 
 class ServiceConfig
 {
-    public string $name;
-    public string $dataCenterId;
-    public string $type;
-    public string $class;
-    public string $brokerVersion;
-    public function __construct(string $name                                    ,
-                                string $dataCenterId                            ,
-                                string $type            = "enterprise"          ,
-                                string $class           = "enterprise-250-nano" ,
-                                string $brokerVersion   = "10.0"                )
+    public string $name                 ;
+    public string $dataCenterId         ;
+    public string $type                 ;
+    public string $class                ;
+    public string $brokerVersion        ;
+    public int    $brokerStorageSize    ;
+    public bool   $storageIsConfigurable;
+
+
+    public function __construct(string $name                                            ,
+                                string $dataCenterId                                    ,
+                                int    $brokerStorageSize       = 25                    ,
+                                bool   $storageIsConfigurable   = false                 ,
+                                string $class                   = "enterprise-250-nano" ,
+                                string $type                    = "enterprise"          ,
+                                string $brokerVersion           = "10.0"                )
     {
-        $this->name             = $name         ;
-        $this->dataCenterId     = $dataCenterId ;
-        $this->type             = $type         ;
-        $this->class            = $class        ;
-        $this->brokerVersion    = $brokerVersion;
+        $this->name                  = $name                ;
+        $this->dataCenterId          = $dataCenterId        ;
+        $this->brokerStorageSize     = $brokerStorageSize   ;
+        $this->storageIsConfigurable = $storageIsConfigurable;
+        $this->class                 = $class               ;
+        $this->type                  = $type                ;
+        $this->brokerVersion         = $brokerVersion       ;
     }
 }

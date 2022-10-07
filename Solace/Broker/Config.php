@@ -17,8 +17,9 @@ class Config
                                 string $adminUsername               ,
                                 string $adminPassword               ,
                                 string $msgVpnName                  ,
-                                string $basePath = "/SEMP/v2/config",
-                                bool   $debug    = false            )
+                                bool   $debug    = false            ,
+                                string $basePath = "/SEMP/v2/config"
+                                )
     {
         $this->adminURL      = $adminURL     ;
         $this->adminUsername = $adminUsername;
