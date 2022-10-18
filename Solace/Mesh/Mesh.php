@@ -186,7 +186,16 @@ curl -s --location --request ".$method." '".$this->servicesConfig->cloudAPIURL.$
     public function deleteMyEventMesh():void
     {
         $mesh = $this->getMyEventMesh();
-        $this->deleteEventMesh($mesh['id']);
+        if($mesh !== null)
+        {
+            $this->deleteEventMesh($mesh['id']);
+        }
+        else
+        {
+            echo "The Event Mesh with name '".$this->servicesConfig->objectNamePrefix.$this->servicesConfig->eventMeshName."' has not been found\n\n";
+            exit(1);
+        }
+
     }
 
     public function deleteEventMesh(string $meshId):void
