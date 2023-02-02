@@ -12,13 +12,13 @@ class ServiceConfig
     public bool   $storageIsConfigurable;
 
 
-    public function __construct(string $name                                            ,
-                                string $dataCenterId                                    ,
-                                int    $brokerStorageSize       = 25                    ,
-                                bool   $storageIsConfigurable   = false                 ,
-                                string $class                   = "enterprise-250-nano" ,
-                                string $type                    = "enterprise"          ,
-                                string $brokerVersion           = "10.0"                )
+    public function __construct(string $name                                                  ,
+                                string $dataCenterId                                          ,
+                                int    $brokerStorageSize       = 25                          ,
+                                bool   $storageIsConfigurable   = false                       ,
+                                string $class                   = "enterprise-250-standalone" , // or enterprise-250-nano
+                                string $type                    = "enterprise-standalone"     , //    enterprise
+                                string $brokerVersion           = "10.1"                      )
     {
         $this->name                  = $name                ;
         $this->dataCenterId          = $dataCenterId        ;

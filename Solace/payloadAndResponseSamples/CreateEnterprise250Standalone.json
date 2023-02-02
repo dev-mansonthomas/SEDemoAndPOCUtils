@@ -1,0 +1,51 @@
+{
+  "data" : {
+    "type" : "service",
+    "timestamp" : 0,
+    "userId" : "dhrcpur99hk",
+    "serviceId" : "bi8kl6p80od",
+    "name" : "Thoams",
+    "msgVpnName" : "thoams",
+    "datacenterId" : "eks-eu-west-2a",
+    "attributes" : {
+      "customizedMessagingPorts" : { },
+      "customizedResourceNames" : { },
+      "monitoring" : { }
+    },
+    "serviceTypeId" : "enterprise-standalone",
+    "serviceClassId" : "enterprise-250-standalone",
+    "adminState" : "start",
+    "created" : 1670333364740,
+    "creationState" : "pending",
+    "msgVpnAttributes" : { },
+    "locked" : false,
+    "messagingStorage" : 25,
+    "serviceStage" : "generalavailability",
+    "servicePackageId" : "DS-V21.2",
+    "serviceClassDisplayedAttributes" : {
+      "High Availability" : "Single Node",
+      "Network Speed" : "450 Mbps",
+      "Storage" : "25 GB",
+      "Message Broker Tenancy" : "Dedicated",
+      "Queues" : "250",
+      "Clients" : "250",
+      "Network Usage" : "50 GB per month"
+    },
+    "accountingLimits" : [ {
+      "id" : "NetworkUsage",
+      "value" : "50000000000",
+      "unit" : "bytes",
+      "thresholds" : [ {
+        "type" : "warning",
+        "value" : "75"
+      } ]
+    } ],
+    "certificateAuthorities" : [ ],
+    "clientCertificateAuthorities" : [ ],
+    "domainCertificateAuthorities" : [ ],
+    "clientProfiles" : [ ],
+    "ldapAuthenticationProfiles" : [ ],
+    "privateServiceConnectionEndpointsEnabled" : false,
+    "serviceConnectionEndpoints" : [ ]
+  }
+}

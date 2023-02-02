@@ -1,0 +1,95 @@
+{
+  "eventMeshName": "Standalone Mesh",
+  "services": [
+    "$A",
+    "$B",
+    "$C",
+    "$D"
+  ],
+  "links": [
+    {
+      "serviceId": "$A",
+      "serviceName": "TM-ACME Rideshare Core",
+      "links": [
+        {
+          "initiatorServiceId": "$B",
+          "remoteServiceId": "$A",
+          "remoteEndpointId": "$remoteA"
+        },
+        {
+          "initiatorServiceId": "$C",
+          "remoteServiceId": "$A",
+          "remoteEndpointId": "$remoteA"
+        },
+        {
+          "initiatorServiceId": "$D",
+          "remoteServiceId": "$A",
+          "remoteEndpointId": "$remoteA"
+        }
+      ]
+    },
+    {
+      "serviceId": "$B",
+      "serviceName": "TM-ACME Rideshare Partner AF",
+      "links": [
+        {
+          "initiatorServiceId": "$B",
+          "remoteServiceId": "$A",
+          "remoteEndpointId": "$remoteA"
+        },
+        {
+          "initiatorServiceId": "$C",
+          "remoteServiceId": "$B",
+          "remoteEndpointId": "$remoteB"
+        },
+        {
+          "initiatorServiceId": "$D",
+          "remoteServiceId": "$B",
+          "remoteEndpointId": "$remoteB"
+        }
+      ]
+    },
+    {
+      "serviceId": "$C",
+      "serviceName": "TM-ACME Rideshare Partner US",
+      "links": [
+        {
+          "initiatorServiceId": "$C",
+          "remoteServiceId": "$A",
+          "remoteEndpointId": "$remoteA"
+        },
+        {
+          "initiatorServiceId": "$C",
+          "remoteServiceId": "$B",
+          "remoteEndpointId": "$remoteB"
+        },
+        {
+          "initiatorServiceId": "$D",
+          "remoteServiceId": "$C",
+          "remoteEndpointId": "$remoteC"
+        }
+      ]
+    },
+    {
+      "serviceId": "$D",
+      "serviceName": "TM-ACME Rideshare Partner JP",
+      "links": [
+        {
+          "initiatorServiceId": "$D",
+          "remoteServiceId": "$A",
+          "remoteEndpointId": "$remoteA"
+        },
+        {
+          "initiatorServiceId": "$D",
+          "remoteServiceId": "$B",
+          "remoteEndpointId": "$remoteB"
+        },
+        {
+          "initiatorServiceId": "$D",
+          "remoteServiceId": "$C",
+          "remoteEndpointId": "$remoteC"
+        }
+      ]
+    }
+  ]
+}
