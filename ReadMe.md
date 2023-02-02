@@ -5,7 +5,7 @@ This set of scripts helps you to set up and tear down an Event Mesh for your dem
 There's also scripts to configure each services and will generate some fake load on the mesh to demo PubSub+ Insight
 
 
-![](./resources/Solace Event Mesh.jpg "Sample Event Mesh with 6 nodes")
+![](./resources/SolaceEventMesh.jpg "Sample Event Mesh with 6 nodes")
 
 
 # Prerequisites
