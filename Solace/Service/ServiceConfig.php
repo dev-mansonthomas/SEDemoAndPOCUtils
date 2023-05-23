@@ -16,9 +16,9 @@ class ServiceConfig
                                 string $dataCenterId                                          ,
                                 int    $brokerStorageSize       = 25                          ,
                                 bool   $storageIsConfigurable   = false                       ,
-                                string $class                   = "enterprise-250-standalone" , // or enterprise-250-nano
-                                string $type                    = "enterprise-standalone"     , //    enterprise
-                                string $brokerVersion           = "10.1"                      )
+                                string $class                   = "enterprise-250-standalone" , // enterprise-250-standalone or enterprise-250-highavailability
+                                string $type                    = "enterprise-standalone"     , // enterprise-standalone     or   enterprise
+                                string $brokerVersion           = "10.4"                      )
     {
         $this->name                  = $name                ;
         $this->dataCenterId          = $dataCenterId        ;

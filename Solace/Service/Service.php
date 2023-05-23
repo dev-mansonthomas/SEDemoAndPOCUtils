@@ -63,8 +63,7 @@ curl -s --location --request ".$method." '".$this->servicesConfig->cloudAPIURL.$
 ";
       }
 
-
-
+      //1443 for WSS as it's the default port in the Try Me feature inside the broker (web manager)
       $curlCommand =
         $this->generateFirstPart("POST","/api/v0/services").
         "--data-raw '{
@@ -90,7 +89,7 @@ curl -s --location --request ".$method." '".$this->servicesConfig->cloudAPIURL.$
         \"serviceSmfCompressedListenPort\": 55003,
         \"serviceSmfTlsListenPort\": 55443,
         \"serviceWebPlainTextListenPort\": 80,
-        \"serviceWebTlsListenPort\": 443,
+        \"serviceWebTlsListenPort\": 1443,
         \"serviceAmqpPlainTextListenPort\": 5672,
         \"serviceAmqpTlsListenPort\": 5671,
         \"serviceMqttPlainTextListenPort\": 1883,

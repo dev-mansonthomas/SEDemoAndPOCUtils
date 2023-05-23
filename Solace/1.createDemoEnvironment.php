@@ -2,6 +2,7 @@
 <?php
 namespace Solace;
 
+use Solace\Broker\User;
 use Solace\Mesh\Mesh;
 use Solace\Service\Service;
 use Solace\Service\ServiceConfig;
@@ -17,6 +18,7 @@ require_once "Service/ServicesConfig.php";
 
 require_once "Broker/Config.php";
 require_once "Broker/Queue.php";
+require_once "Broker/User.php";
 
 
 require_once "configDemoEnv.php";
@@ -47,6 +49,8 @@ foreach ($myServices as $oneService)
 
     for($i=0;$i<$numberOfServices;$i++)
     {
+        (new User($config, "default", true, "!!"))->updateUser();
+        
         if($i == 0 || $i == $j || $i%$j == 0)
             (new Queue ( $config,"queue_0$i" ) )
                 ->createQueue()
